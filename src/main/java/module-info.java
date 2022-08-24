@@ -8,6 +8,6 @@ module com.example.carsharing_fx {
     requires java.naming;
 
 
-    opens com.example.carsharing_fx to javafx.fxml;
+    opens application to javafx.fxml;
     exports application;
 }

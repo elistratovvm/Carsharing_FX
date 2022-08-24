@@ -1,5 +1,4 @@
 package application;
-	//task completed by Elistratov Vitaliy
 
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -9,29 +8,37 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ReturnCustomerValues {
-	public String returnCustomerId(String customerPlate) {		//Return Customer ID 
+
+	// Return Customer ID
+	public String returnCustomerId(String customerPlate) {
+
 		try {
 			String query = "SELECT id"
 					+ " FROM customers "
 					+ "WHERE drivers_license = '" + customerPlate + "'";
+
 			OracleDataSource ods = new OracleDataSource();
 			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
 			Connection conn = ods.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(query, 
+			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
-			ResultSet rset = pstmt.executeQuery(query);
-			rset.next();
-			return rset.getString(1);
-		} 
-		
-		catch (Exception ex) {
+			ResultSet resultSet = preparedStatement.executeQuery(query);
+
+			resultSet.next();
+
+			return resultSet.getString(1);
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 		return null;
 	}
-	public ArrayList<String> returnCarOnPointList(String nearestPointAddress) {	//Return Car On Point List 
-		ArrayList<String> carList = new ArrayList<String>();
+
+	// Return Car On Point List
+	public ArrayList<String> returnCarOnPointList(String nearestPointAddress) {
+
+		ArrayList<String> carList = new ArrayList<>();
 		try {
 			String query = "SELECT c.license_plate, c.cte_brand_and_model, "
 					+ "c.technical_condition, c.fuel, ct.rate_in_hour "
@@ -39,99 +46,121 @@ public class ReturnCustomerValues {
 					+ "ON (c.id = d.car_id) "
 					+ "JOIN car_types ct "
 					+ "ON (c.cte_brand_and_model = ct.brand_and_model) "
-					+ "WHERE ((d.lpt_id = '" + getNearesPointId(nearestPointAddress) + "') "
+					+ "WHERE ((d.lpt_id = '" + getNearestPointId(nearestPointAddress) + "') "
 					+ "AND (c.id NOT IN(SELECT car_id "
 					+ "FROM contract_details "
 					+ "WHERE contract_date != SYSDATE)))";
+
 			OracleDataSource ods = new OracleDataSource();
 			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
 			Connection conn = ods.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(query, 
+			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
-			ResultSet rset = pstmt.executeQuery(query);
+			ResultSet resultSet = preparedStatement.executeQuery(query);
 			
-			while (rset.next()) {
-				carList.add("Plate: " + rset.getString(1) + 
-						", " + rset.getString(2) + 
-						", Technical condition: " + rset.getString(3) +
-						", Fuel: " + rset.getString(4) +
-						", Rate: " + rset.getString(5));
+			while (resultSet.next()) {
+				carList.add("Plate: " + resultSet.getString(1) +
+						", " + resultSet.getString(2) +
+						", Technical condition: " + resultSet.getString(3) +
+						", Fuel: " + resultSet.getString(4) +
+						", Rate: " + resultSet.getString(5));
 			}
+
 			return carList;
-		} 
-		
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 		return carList;
 	}
-	public ArrayList<Integer> returnPointCoordinateList() {		//Return Point Coordinate List
-		ArrayList<Integer> coordinateList = new ArrayList<Integer>();
+
+	// Return Point Coordinate List
+	public ArrayList<Integer> returnPointCoordinateList() {
+
+		ArrayList<Integer> coordinateList = new ArrayList<>();
 		try {
 			String query = "SELECT x_coordinate, y_coordinate "
 					+ " FROM lease_points";
+
 			OracleDataSource ods = new OracleDataSource();
 			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
 			Connection conn = ods.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(query, 
+			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
-			ResultSet rset = pstmt.executeQuery(query);
+			ResultSet resultSet = preparedStatement.executeQuery(query);
 			
-			while (rset.next()) {
-				coordinateList.add(Integer.parseInt(rset.getString(1)));
-				coordinateList.add(Integer.parseInt(rset.getString(2)));
+			while (resultSet.next()) {
+				coordinateList.add(Integer.parseInt(resultSet.getString(1)));
+				coordinateList.add(Integer.parseInt(resultSet.getString(2)));
 			}
+
 			return coordinateList;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 		return coordinateList;
 	}
-	public String getNearesPointAddress(int pointNumber) {			//Get Address nearest Point from ID
+
+	// Get Address the nearest Point from ID
+	public String getNearestPointAddress(int pointNumber) {
+
 		try {
 			String query = "SELECT address "
 					+ " FROM lease_points "
 					+ "WHERE id = '" + getValue(pointNumber)+ "'";
+
 			OracleDataSource ods = new OracleDataSource();
 			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
 			Connection conn = ods.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(query, 
+			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
-			ResultSet rset = pstmt.executeQuery(query);
-			rset.next();
+			ResultSet resultSet = preparedStatement.executeQuery(query);
+
+			resultSet.next();
 			
-			return rset.getString(1);
+			return resultSet.getString(1);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 		return null;
 	}
-	public String getNearesPointId(String nearestPointAddress) {		//Get ID nearest Point from Address
+
+	// Get ID nearest Point from Address
+	public String getNearestPointId(String nearestPointAddress) {
+
 		try {
 			String query = "SELECT id address "
 					+ " FROM lease_points "
 					+ "WHERE address = '" + nearestPointAddress + "'";
+
 			OracleDataSource ods = new OracleDataSource();
 			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
 			Connection conn = ods.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(query, 
+			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
-			ResultSet rset = pstmt.executeQuery(query);
-			rset.next();
+			ResultSet resultSet = preparedStatement.executeQuery(query);
+
+			resultSet.next();
 			
-			return rset.getString(1);
+			return resultSet.getString(1);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 		return null;
 	}
-	private String getValue(int pointNumber) {		//get ID Point from number
+
+	// Get ID Point from number
+	private String getValue(int pointNumber) {
+
 		try {
 			String nearestPointId = "p";
 			
@@ -144,6 +173,7 @@ public class ReturnCustomerValues {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 		return null;
 	}
 }

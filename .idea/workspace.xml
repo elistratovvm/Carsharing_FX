@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/Carsharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carsharing_fx/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carsharing_fx/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carsharing_FX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Carsharing_FX.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/AddValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/AddValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/AggregatorAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/AggregatorAuthorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/CustomerAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CustomerAuthorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnCustomerValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/ReturnCustomerValues.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carsharing_fx/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +24,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/application/CustomerAuthorization.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/application/CarSharing.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/application/AddValues.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/application/AggregatorAuthorization.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/application/ReturnCustomerValues.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/module-info.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -33,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../postgresql-42.3.4.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33563218" />
@@ -44,9 +59,9 @@
       <recent name="C:\Users\vital\IdeaProjects\Carsharing_FX\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Carsharing">
-    <configuration name="Carsharing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.Carsharing" />
+  <component name="RunManager" selected="Application.CarSharing">
+    <configuration name="CarSharing" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="application.CarSharing" />
       <module name="Carsharing_FX" />
       <extension name="coverage">
         <pattern>
@@ -71,9 +86,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.CarSharing" />
+      <item itemvalue="Application.HelloApplication" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Carsharing" />
+        <item itemvalue="Application.CarSharing" />
         <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>
@@ -87,6 +106,14 @@
       <option name="presentableId" value="Default" />
       <updated>1661158793019</updated>
     </task>
+    <task id="LOCAL-00001" summary="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability.">
+      <created>1661267181692</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1661267181692</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -99,5 +126,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability." />
   </component>
 </project>

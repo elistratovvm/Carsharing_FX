@@ -751,7 +751,7 @@ public class CarSharing extends Application {
 			}
 		}
 		
-		return rcv.getNearesPointAddress(pointNumber);
+		return rcv.getNearestPointAddress(pointNumber);
 	}
 
 	// Set location Point

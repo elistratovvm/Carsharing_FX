@@ -4,23 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability.">
+    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Syntax rewriting&#10;Other class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability;&#10;&#10;Added postgres library">
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/DatabaseConnector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Carsharing_FX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Carsharing_FX.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/AddValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/AddValues.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/AggregatorAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/AggregatorAuthorization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/CustomerAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CustomerAuthorization.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnCustomerValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/ReturnCustomerValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carsharing_fx/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,7 +51,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../postgresql-42.3.4.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VKR_Project" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33563218" />
@@ -113,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661267181692</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Syntax rewriting&#10;Other class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability;&#10;&#10;Added postgres library">
+      <created>1661333267370</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1661333267370</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,6 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability." />
+    <MESSAGE value="Syntax rewriting&#10;Other class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability;&#10;&#10;Added postgres library" />
+    <option name="LAST_COMMIT_MESSAGE" value="Syntax rewriting&#10;Other class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability;&#10;&#10;Added postgres library" />
   </component>
 </project>

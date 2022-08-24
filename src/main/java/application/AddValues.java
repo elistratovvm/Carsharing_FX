@@ -1,6 +1,7 @@
 package application;
 
-import oracle.jdbc.pool.OracleDataSource;
+
+import service.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,9 +19,7 @@ public class AddValues {
 			String cttQuery = "INSERT INTO contract_details (ctt_id, car_id, contract_date) "
 					+ "VALUES ('" + lastIdContract + "', '" + getCarIdFromPlate(plate) + "', SYSDATE)";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement1 = conn.prepareStatement(ctrQuery);
 			PreparedStatement preparedStatement2 = conn.prepareStatement(cttQuery);
 
@@ -43,9 +42,7 @@ public class AddValues {
 			String query = "INSERT INTO customers (id, first_name, last_name, drivers_license) "
 					+ "VALUES ('" + lastIdCustomer + "', '" + firstName + "', '" + lastName + "', '" + license + "')";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 
 			preparedStatement.execute();
@@ -67,9 +64,7 @@ public class AddValues {
 			String query2 = "INSERT INTO car_lease_point_details (car_id, lpt_id)"
 					+ "VALUES ('" + lastIdCar + "', '" + getIdPoint(point) + "')";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement1 = conn.prepareStatement(query1);
 			PreparedStatement preparedStatement2 = conn.prepareStatement(query2);
 
@@ -92,9 +87,7 @@ public class AddValues {
 			String query = "INSERT INTO lease_points (id, address, x_coordinate, y_coordinate, agr_id) "
 					+ "VALUES ('" + lastIdPoint + "', '" + address + "', " + x + ", " + y + ", 'a01')";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 
 			preparedStatement.execute();
@@ -106,15 +99,13 @@ public class AddValues {
 		}
 	}
 
-	// Get Point Id from Address
+	// Get Point id from Address
 	private String getIdPoint(String point) {
 
 		try {
 			String query = "SELECT id FROM lease_points WHERE address = '" + point + "'";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -136,9 +127,7 @@ public class AddValues {
 		try {
 			String query = "SELECT id FROM cars WHERE license_plate = '" + plate + "'";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -158,9 +147,7 @@ public class AddValues {
 	private String getLastValueId(String query) {
 
 		try {
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);

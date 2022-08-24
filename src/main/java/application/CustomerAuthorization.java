@@ -1,6 +1,6 @@
 package application;
 
-import oracle.jdbc.pool.OracleDataSource;
+import service.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,9 +16,7 @@ public class CustomerAuthorization {
 					+ "FROM customers "
 					+ "WHERE drivers_license = '" + login + "'";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);

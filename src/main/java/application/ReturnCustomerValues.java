@@ -1,6 +1,6 @@
 package application;
 
-import oracle.jdbc.pool.OracleDataSource;
+import service.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,9 +17,7 @@ public class ReturnCustomerValues {
 					+ " FROM customers "
 					+ "WHERE drivers_license = '" + customerPlate + "'";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -51,9 +49,7 @@ public class ReturnCustomerValues {
 					+ "FROM contract_details "
 					+ "WHERE contract_date != SYSDATE)))";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -83,9 +79,7 @@ public class ReturnCustomerValues {
 			String query = "SELECT x_coordinate, y_coordinate "
 					+ " FROM lease_points";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -112,9 +106,7 @@ public class ReturnCustomerValues {
 					+ " FROM lease_points "
 					+ "WHERE id = '" + getValue(pointNumber)+ "'";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -139,9 +131,7 @@ public class ReturnCustomerValues {
 					+ " FROM lease_points "
 					+ "WHERE address = '" + nearestPointAddress + "'";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);

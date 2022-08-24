@@ -1,6 +1,6 @@
 package application;
 
-import oracle.jdbc.pool.OracleDataSource;
+import service.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,9 +17,7 @@ public class ReturnAggregatorValues {
 			String query = "SELECT address"
 					+ " FROM lease_points";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -45,9 +43,7 @@ public class ReturnAggregatorValues {
 			String query = "SELECT brand_and_model"
 					+ " FROM car_types";
 
-			OracleDataSource ods = new OracleDataSource();
-			ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-			Connection conn = ods.getConnection();
+			Connection conn = new DatabaseConnector().getConn();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);

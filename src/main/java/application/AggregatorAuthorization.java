@@ -16,7 +16,8 @@ public class AggregatorAuthorization {
 					+ "FROM aggregators "
 					+ "WHERE id = '" + login + "'";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Class.forName("org.postgresql.Driver");
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);

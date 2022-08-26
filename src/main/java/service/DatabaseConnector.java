@@ -1,26 +1,25 @@
 package service;
 
-import oracle.jdbc.pool.OracleDataSource;
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class DatabaseConnector {
 
-    private static OracleDataSource ods;
-    private Connection conn;
+    private Connection connection;
 
     public DatabaseConnector() {
 
         try {
-            OracleDataSource ods = new OracleDataSource();
-            ods.setURL("jdbc:oracle:thin:carsharing/carsharing@localhost:1521/xe");
-            Connection conn = ods.getConnection();
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/carshering", "postgres", "postgres");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public Connection getConn() {
-        return conn;
+    public Connection getConnection() {
+        return connection;
     }
 
 }

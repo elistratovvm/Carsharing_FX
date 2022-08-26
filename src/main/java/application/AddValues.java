@@ -19,7 +19,8 @@ public class AddValues {
 			String cttQuery = "INSERT INTO contract_details (ctt_id, car_id, contract_date) "
 					+ "VALUES ('" + lastIdContract + "', '" + getCarIdFromPlate(plate) + "', SYSDATE)";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Class.forName("org.postgresql.Driver");
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement1 = conn.prepareStatement(ctrQuery);
 			PreparedStatement preparedStatement2 = conn.prepareStatement(cttQuery);
 
@@ -42,7 +43,7 @@ public class AddValues {
 			String query = "INSERT INTO customers (id, first_name, last_name, drivers_license) "
 					+ "VALUES ('" + lastIdCustomer + "', '" + firstName + "', '" + lastName + "', '" + license + "')";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 
 			preparedStatement.execute();
@@ -64,7 +65,7 @@ public class AddValues {
 			String query2 = "INSERT INTO car_lease_point_details (car_id, lpt_id)"
 					+ "VALUES ('" + lastIdCar + "', '" + getIdPoint(point) + "')";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement1 = conn.prepareStatement(query1);
 			PreparedStatement preparedStatement2 = conn.prepareStatement(query2);
 
@@ -87,7 +88,7 @@ public class AddValues {
 			String query = "INSERT INTO lease_points (id, address, x_coordinate, y_coordinate, agr_id) "
 					+ "VALUES ('" + lastIdPoint + "', '" + address + "', " + x + ", " + y + ", 'a01')";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 
 			preparedStatement.execute();
@@ -105,7 +106,7 @@ public class AddValues {
 		try {
 			String query = "SELECT id FROM lease_points WHERE address = '" + point + "'";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -127,7 +128,7 @@ public class AddValues {
 		try {
 			String query = "SELECT id FROM cars WHERE license_plate = '" + plate + "'";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -147,7 +148,7 @@ public class AddValues {
 	private String getLastValueId(String query) {
 
 		try {
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);

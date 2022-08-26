@@ -51,7 +51,7 @@ public class CarSharing extends Application {
 
 	// Windows methods
 	// Customer Authorization
-	public static void customerAuthorizationWindow() {
+	public void customerAuthorizationWindow() {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -118,7 +118,7 @@ public class CarSharing extends Application {
 	}
 
 	// Customer Action Window
-	public static void customerActionWindow(Stage primaryStage, String login) {
+	public void customerActionWindow(Stage primaryStage, String login) {
 
 		// Close Primary Stage
 		primaryStage.close();
@@ -130,7 +130,8 @@ public class CarSharing extends Application {
 
 		// Create Interface Elements
 		Circle customerPoint = getCustomerPoint();
-		Image mapImg = new Image(Objects.requireNonNull(CarSharing.class.getResource("/Background.jpg")).toString());
+		Image mapImg = new Image((Objects.requireNonNull(
+				this.getClass().getClassLoader().getResource("Background.jpg"))).toString());
 		ImageView mapImgView = new ImageView(mapImg);
 		Button enterButton = new Button("Enter");
 		Button exitButton = new Button("Exit");
@@ -188,7 +189,7 @@ public class CarSharing extends Application {
 	}
 
 	//Customer Sign Contract
-	public static void customerCreateContract(String x, String y, String login) {
+	public void customerCreateContract(String x, String y, String login) {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -253,7 +254,7 @@ public class CarSharing extends Application {
 	}
 
 	// Customer Registration
-	public static void customerRegistrationWindow(Stage primaryStage) {
+	public void customerRegistrationWindow(Stage primaryStage) {
 
 		// close Primary Stage
 		primaryStage.close();
@@ -355,7 +356,7 @@ public class CarSharing extends Application {
 	}
 
 	// Aggregator Authorization
-	public static void aggregatorAuthorizationWindow() {
+	public void aggregatorAuthorizationWindow() {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -410,7 +411,7 @@ public class CarSharing extends Application {
 	}
 
 	// Aggregator Window
-	public static void aggregatorActionWindow(Stage primaryStage) {
+	public void aggregatorActionWindow(Stage primaryStage) {
 
 		// Close Primary Stage
 		primaryStage.close();
@@ -443,7 +444,7 @@ public class CarSharing extends Application {
 	}
 
 	// Aggregator Add Car
-	public static void aggregatorAddCar(Stage primaryStage) {
+	public void aggregatorAddCar(Stage primaryStage) {
 
 		// Close Primary Stage
 		primaryStage.close();
@@ -537,7 +538,7 @@ public class CarSharing extends Application {
 	}
 
 	//Aggregator Add Point
-	public static void aggregatorAddPoint(Stage primaryStage) {
+	public void aggregatorAddPoint(Stage primaryStage) {
 
 		// close Primary Stage
 		primaryStage.close();
@@ -551,7 +552,8 @@ public class CarSharing extends Application {
 		// Create Interface Elements
 		TextField addressTextField = new TextField();
 		Circle customerPoint = getCustomerPoint();
-		Image mapImg = new Image(Objects.requireNonNull(CarSharing.class.getResource("/Background.jpg")).toString());
+		Image mapImg = new Image((Objects.requireNonNull(
+				this.getClass().getClassLoader().getResource("Background.jpg"))).toString());
 		ImageView mapImgView = new ImageView(mapImg);
 		Label addressText = new Label("Address");
 		Button addPointButton = new Button("Add a new point");
@@ -635,7 +637,7 @@ public class CarSharing extends Application {
 		
 	// Interface Elements sizes and settings methods
 	// Set Text Field
-	public static void setTextField(
+	public void setTextField(
 			TextField settableTF,
 			int xSize,
 			int ySize,
@@ -648,7 +650,7 @@ public class CarSharing extends Application {
 	}
 
 	// Set Text Label
-	public static void setTextLabel(
+	public void setTextLabel(
 			Label settableLabel,
 			int xLayout,
 			int yLayout) {
@@ -658,7 +660,7 @@ public class CarSharing extends Application {
 	}
 
 	// Set Button
-	public static void setButton(
+	public void setButton(
 			Button settableB,
 			int xSize,
 			int ySize,
@@ -671,7 +673,7 @@ public class CarSharing extends Application {
 	}
 
 	// Set ComboBox
-	public static void setComboBox(
+	public void setComboBox(
 			ComboBox<String> settableBox,
 			int xSize,
 			int ySize,
@@ -685,7 +687,7 @@ public class CarSharing extends Application {
 	
 	// Other methods
 	// Is not numeric
-	public static boolean isNotNumeric(String str) {
+	public boolean isNotNumeric(String str) {
 
 		try {  
 			Double.parseDouble(str);  
@@ -696,7 +698,7 @@ public class CarSharing extends Application {
 	}
 
 	// Create Points
-	public static Circle[] paintPoint() {
+	public Circle[] paintPoint() {
 
 		ReturnCustomerValues rcv = new ReturnCustomerValues();
 		ArrayList<Integer> pointCoordinates;
@@ -723,7 +725,7 @@ public class CarSharing extends Application {
 	}
 
 	//Find the nearest Point
-	public static String nearestPoint(
+	public String nearestPoint(
 			String x,
 			String y,
 			ArrayList<Integer> pointCoordinates) {
@@ -755,7 +757,7 @@ public class CarSharing extends Application {
 	}
 
 	// Set location Point
-	public static void setCustomerPoint(ImageView map, Circle customerPoint) {
+	public void setCustomerPoint(ImageView map, Circle customerPoint) {
 
 		map.setOnMousePressed(me -> {
 			customerPoint.setCenterX(me.getX() + 25);
@@ -764,7 +766,7 @@ public class CarSharing extends Application {
 	}
 
 	// Get Location Point
-	public static Circle getCustomerPoint() {
+	public Circle getCustomerPoint() {
 
 		ReturnCustomerValues rcv = new ReturnCustomerValues();
 		ArrayList<Integer> pointCoordinates;

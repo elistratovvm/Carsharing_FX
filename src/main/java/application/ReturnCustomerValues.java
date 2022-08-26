@@ -5,6 +5,7 @@ import service.DatabaseConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ReturnCustomerValues {
@@ -17,11 +18,8 @@ public class ReturnCustomerValues {
 					+ " FROM customers "
 					+ "WHERE drivers_license = '" + customerPlate + "'";
 
-			Connection conn = new DatabaseConnector().getConn();
-			PreparedStatement preparedStatement = conn.prepareStatement(query,
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			ResultSet resultSet = preparedStatement.executeQuery(query);
+			Statement statement = new DatabaseConnector().getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
 
 			resultSet.next();
 
@@ -49,7 +47,7 @@ public class ReturnCustomerValues {
 					+ "FROM contract_details "
 					+ "WHERE contract_date != SYSDATE)))";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -79,11 +77,8 @@ public class ReturnCustomerValues {
 			String query = "SELECT x_coordinate, y_coordinate "
 					+ " FROM lease_points";
 
-			Connection conn = new DatabaseConnector().getConn();
-			PreparedStatement preparedStatement = conn.prepareStatement(query,
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			ResultSet resultSet = preparedStatement.executeQuery(query);
+			Statement statement = new DatabaseConnector().getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
 			
 			while (resultSet.next()) {
 				coordinateList.add(Integer.parseInt(resultSet.getString(1)));
@@ -106,7 +101,8 @@ public class ReturnCustomerValues {
 					+ " FROM lease_points "
 					+ "WHERE id = '" + getValue(pointNumber)+ "'";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Class.forName("org.postgresql.Driver");
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -131,7 +127,7 @@ public class ReturnCustomerValues {
 					+ " FROM lease_points "
 					+ "WHERE address = '" + nearestPointAddress + "'";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);

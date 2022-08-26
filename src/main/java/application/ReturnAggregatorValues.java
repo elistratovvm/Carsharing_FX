@@ -17,7 +17,7 @@ public class ReturnAggregatorValues {
 			String query = "SELECT address"
 					+ " FROM lease_points";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -43,7 +43,8 @@ public class ReturnAggregatorValues {
 			String query = "SELECT brand_and_model"
 					+ " FROM car_types";
 
-			Connection conn = new DatabaseConnector().getConn();
+			Class.forName("org.postgresql.Driver");
+			Connection conn = new DatabaseConnector().getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(query,
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);

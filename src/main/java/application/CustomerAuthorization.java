@@ -2,9 +2,8 @@ package application;
 
 import service.DatabaseConnector;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class CustomerAuthorization {
 
@@ -16,11 +15,9 @@ public class CustomerAuthorization {
 					+ "FROM customers "
 					+ "WHERE drivers_license = '" + login + "'";
 
-			Connection conn = new DatabaseConnector().getConn();
-			PreparedStatement preparedStatement = conn.prepareStatement(query,
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			ResultSet resultSet = preparedStatement.executeQuery(query);
+			Class.forName("org.postgresql.Driver");
+			Statement statement = new DatabaseConnector().getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
 
 			return resultSet.next();
 		} catch (Exception e1) {

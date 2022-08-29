@@ -1,12 +1,17 @@
 package service.database;
 
-import service.database.DatabaseConnector;
-
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ReturnCustomerValues {
+
+	Connection connection;
+
+	public ReturnCustomerValues(Connection connection) {
+		this.connection = connection;
+	}
 
 	// Return Customer ID
 	public String returnCustomerId(String customerPlate) {
@@ -43,7 +48,7 @@ public class ReturnCustomerValues {
 					+ "WHERE ((d.lpt_id = '" + getNearestPointId(nearestPointAddress) + "') "
 					+ "AND (c.id NOT IN(SELECT car_id "
 					+ "FROM contract_details "
-					+ "WHERE contract_date != SYSDATE)))";
+					+ "WHERE contract_date != CURRENT_DATE)))";
 
 			Statement statement = new DatabaseConnector().getConnection().createStatement();
 			ResultSet resultSet = statement.executeQuery(query);

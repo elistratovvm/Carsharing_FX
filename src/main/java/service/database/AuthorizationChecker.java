@@ -1,9 +1,16 @@
 package service.database;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AuthorizationChecker {
+
+    Connection connection;
+
+    public AuthorizationChecker(Connection connection) {
+        this.connection = connection;
+    }
 
     // Check Aggregator
     public boolean checkAggregatorAuthorization(String login) {

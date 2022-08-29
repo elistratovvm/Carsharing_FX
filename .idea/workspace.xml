@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="End of migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;All authorization check moved to new class.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/ElementSetter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/PointManager.java" afterDir="false" />
+    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Restructuring&#10;Part of methods of CarSharing class moved in new class.&#10;All backend methods moved in new package.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/AddValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AddValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/AuthorizationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/ReturnAggregatorValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnCustomerValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/ReturnCustomerValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/DatabaseConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/PointManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AddValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AddValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/ReturnAggregatorValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/ReturnAggregatorValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/ReturnCustomerValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/ReturnCustomerValues.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +48,6 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -149,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661758942264</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Restructuring&#10;Part of methods of CarSharing class moved in new class.&#10;All backend methods moved in new package.">
+      <created>1661761367032</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1661761367032</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,6 +172,7 @@
     <MESSAGE value="DB connection away&#10;from other class in new class" />
     <MESSAGE value="Migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;Fixed NullPointerException when user goes to the map window." />
     <MESSAGE value="End of migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;All authorization check moved to new class." />
-    <option name="LAST_COMMIT_MESSAGE" value="End of migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;All authorization check moved to new class." />
+    <MESSAGE value="Restructuring&#10;Part of methods of CarSharing class moved in new class.&#10;All backend methods moved in new package." />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructuring&#10;Part of methods of CarSharing class moved in new class.&#10;All backend methods moved in new package." />
   </component>
 </project>

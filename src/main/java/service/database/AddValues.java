@@ -1,12 +1,16 @@
 package service.database;
 
-
-import service.database.DatabaseConnector;
-
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AddValues {
+
+	Connection connection;
+
+	public AddValues(Connection connection) {
+		this.connection = connection;
+	}
 
 	// Create contract
 	public void addContract(String plate, String login) {
@@ -16,7 +20,7 @@ public class AddValues {
 			String ctrQuery = "INSERT INTO contracts (id, agr_id, ctr_id) "
 					+ "VALUES ('" + lastIdContract + "', 'a01', '" + login + "')";
 			String cttQuery = "INSERT INTO contract_details (ctt_id, car_id, contract_date) "
-					+ "VALUES ('" + lastIdContract + "', '" + getCarIdFromPlate(plate) + "', SYSDATE)";
+					+ "VALUES ('" + lastIdContract + "', '" + getCarIdFromPlate(plate) + "', CURRENT_DATE)";
 
 			Statement statement1 = new DatabaseConnector().getConnection().createStatement();
 			Statement statement2 = new DatabaseConnector().getConnection().createStatement();

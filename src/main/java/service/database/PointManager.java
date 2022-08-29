@@ -1,18 +1,24 @@
-package service;
+package service.database;
 
-import service.database.ReturnCustomerValues;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
 public class PointManager {
 
+    Connection connection;
+
+    public PointManager(Connection connection) {
+        this.connection = connection;
+    }
+
     // Create Points
     public Circle[] paintPoint() {
 
-        ReturnCustomerValues rcv = new ReturnCustomerValues();
+        ReturnCustomerValues rcv = new ReturnCustomerValues(connection);
         ArrayList<Integer> pointCoordinates;
         pointCoordinates = rcv.returnPointCoordinateList();
 
@@ -42,7 +48,7 @@ public class PointManager {
             String y,
             ArrayList<Integer> pointCoordinates) {
 
-        ReturnCustomerValues rcv = new ReturnCustomerValues();
+        ReturnCustomerValues rcv = new ReturnCustomerValues(connection);
 
         double xInt = Double.parseDouble(x);
         double yInt = Double.parseDouble(y);
@@ -80,7 +86,7 @@ public class PointManager {
     // Get Location Point
     public Circle getCustomerPoint() {
 
-        ReturnCustomerValues rcv = new ReturnCustomerValues();
+        ReturnCustomerValues rcv = new ReturnCustomerValues(connection);
         ArrayList<Integer> pointCoordinates;
         pointCoordinates = rcv.returnPointCoordinateList();
 

@@ -1,12 +1,17 @@
 package service.database;
 
-import service.database.DatabaseConnector;
-
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ReturnAggregatorValues {
+
+	Connection connection;
+
+	public ReturnAggregatorValues(Connection connection) {
+		this.connection = connection;
+	}
 
 	// Return Point Address List
 	public ArrayList<String> returnPointAddressList() {

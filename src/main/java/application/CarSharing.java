@@ -15,20 +15,20 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import service.ElementSetter;
-import service.PointManager;
-import service.database.AddValues;
-import service.database.AuthorizationChecker;
-import service.database.ReturnAggregatorValues;
-import service.database.ReturnCustomerValues;
+import service.database.PointManager;
+import service.database.*;
 
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class CarSharing extends Application {
 
+	Connection connection = new DatabaseConnector().getConnection();
 	ElementSetter elementSetter = new ElementSetter();
-	PointManager pointManager = new PointManager();
+	PointManager pointManager = new PointManager(connection);
 
 	@Override
 	// Start Window
@@ -55,6 +55,13 @@ public class CarSharing extends Application {
 		primaryStage.setTitle("Car sharing App");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		primaryStage.setOnCloseRequest(e -> {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		});
 	}
 
 	// Windows methods
@@ -65,8 +72,8 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		AuthorizationChecker authorizationChecker = new AuthorizationChecker();
-		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues();
+		AuthorizationChecker authorizationChecker = new AuthorizationChecker(connection);
+		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues(connection);
 
 		// Create Interface Elements
 		TextField loginTextField = new TextField();
@@ -133,7 +140,7 @@ public class CarSharing extends Application {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
-		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues();
+		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues(connection);
 		ArrayList<Integer> pointCoordinates = new ArrayList<>(returnCustomerValues.returnPointCoordinateList());
 
 		// Create Interface Elements
@@ -167,7 +174,7 @@ public class CarSharing extends Application {
 						"This point has no car today",
 						"Error",
 						JOptionPane.ERROR_MESSAGE);
-				System.out.println(ex);
+				ex.printStackTrace();
 			}
 			
 		});
@@ -202,8 +209,8 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		AddValues addValues = new AddValues();
-		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues();
+		AddValues addValues = new AddValues(connection);
+		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues(connection);
 		ArrayList<Integer> pointCoordinates = new ArrayList<>(returnCustomerValues.returnPointCoordinateList());
 		String nearestPointAddress = pointManager.nearestPoint(x, y, pointCoordinates);
 
@@ -232,13 +239,13 @@ public class CarSharing extends Application {
 						"Successful",
 						JOptionPane.INFORMATION_MESSAGE);
 				secondStage.close();
-			} catch (NullPointerException e1) {
+			} catch (NullPointerException ex) {
 				JOptionPane.showMessageDialog(
 						null,
 						"Please, choose the car",
 						"Error",
 						JOptionPane.ERROR_MESSAGE);
-				System.out.println(e1);
+				ex.printStackTrace();
 			}
 		});
 		backButton.setOnAction(e -> secondStage.close());
@@ -267,7 +274,7 @@ public class CarSharing extends Application {
 		primaryStage.close();
 
 		// Create local variables and Object
-		AddValues addValues = new AddValues();
+		AddValues addValues = new AddValues(connection);
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -333,7 +340,7 @@ public class CarSharing extends Application {
 					customerAuthorizationWindow();
 					secondStage.close();
 				} catch (Exception ex) {
-					System.out.println(ex);
+					ex.printStackTrace();
 				}
 			}
 		});
@@ -369,7 +376,7 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		AuthorizationChecker authorizationChecker = new AuthorizationChecker();
+		AuthorizationChecker authorizationChecker = new AuthorizationChecker(connection);
 
 		// Create Interface Elements
 		TextField loginTextField = new TextField();
@@ -460,8 +467,8 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		ReturnAggregatorValues returnAggregatorValues = new ReturnAggregatorValues();
-		AddValues addValues = new AddValues();
+		ReturnAggregatorValues returnAggregatorValues = new ReturnAggregatorValues(connection);
+		AddValues addValues = new AddValues(connection);
 
 		// Create Interface Elements
 		ObservableList<String> pointList = FXCollections.observableArrayList(returnAggregatorValues.returnPointAddressList());
@@ -514,7 +521,7 @@ public class CarSharing extends Application {
 							"Please, select model and point",
 							"Error",
 							JOptionPane.ERROR_MESSAGE);
-					System.out.println(ex);
+					ex.printStackTrace();
 				}
 			}
 		});
@@ -551,7 +558,7 @@ public class CarSharing extends Application {
 		primaryStage.close();
 
 		// Create local variables and Object
-		AddValues addValues = new AddValues();
+		AddValues addValues = new AddValues(connection);
 
 		// Create new Stage
 		Stage secondStage = new Stage();

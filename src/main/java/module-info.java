@@ -10,4 +10,6 @@ module com.example.carsharing_fx {
 
     opens application to javafx.fxml;
     exports application;
+    exports service.database;
+    opens service.database to javafx.fxml;
 }

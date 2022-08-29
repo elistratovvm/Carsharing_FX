@@ -11,16 +11,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import service.ElementSetter;
+import service.PointManager;
+import service.database.AddValues;
+import service.database.AuthorizationChecker;
+import service.database.ReturnAggregatorValues;
+import service.database.ReturnCustomerValues;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class CarSharing extends Application {
+
+	ElementSetter elementSetter = new ElementSetter();
+	PointManager pointManager = new PointManager();
 
 	@Override
 	// Start Window
@@ -31,8 +39,8 @@ public class CarSharing extends Application {
 		Button enterAsAggregatorButton = new Button("Enter as aggregator");
 
 		// Buttons size and settings
-		setButton(enterAsCustomerButton, 250, 50, 25, 25);
-		setButton(enterAsAggregatorButton, 250, 50, 25, 100);
+		elementSetter.setButton(enterAsCustomerButton, 250, 50, 25, 25);
+		elementSetter.setButton(enterAsAggregatorButton, 250, 50, 25, 100);
 
 		// Set on Action Buttons
 		enterAsCustomerButton.setOnAction(e -> customerAuthorizationWindow());
@@ -67,10 +75,10 @@ public class CarSharing extends Application {
 		Button registrationButton = new Button("Registration");
 
 		// Interface Elements sizes and settings
-		setTextField(loginTextField, 200, 25, 75, 25);
-		setTextLabel(loginText, 20, 30);
-		setButton(enterButton, 100, 25, 175, 75);
-		setButton(registrationButton, 100, 25, 50, 75);
+		elementSetter.setTextField(loginTextField, 200, 25, 75, 25);
+		elementSetter.setTextLabel(loginText, 20, 30);
+		elementSetter.setButton(enterButton, 100, 25, 175, 75);
+		elementSetter.setButton(registrationButton, 100, 25, 50, 75);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
@@ -129,7 +137,7 @@ public class CarSharing extends Application {
 		ArrayList<Integer> pointCoordinates = new ArrayList<>(returnCustomerValues.returnPointCoordinateList());
 
 		// Create Interface Elements
-		Circle customerPoint = getCustomerPoint();
+		Circle customerPoint = pointManager.getCustomerPoint();
 		Image mapImg = new Image((Objects.requireNonNull(
 				this.getClass().getClassLoader().getResource("Background.jpg"))).toString());
 		ImageView mapImgView = new ImageView(mapImg);
@@ -137,15 +145,14 @@ public class CarSharing extends Application {
 		Button exitButton = new Button("Exit");
 
 		// Interface Elements sizes and settings
-		mapImgView.setLayoutX(25);
-		mapImgView.setLayoutY(25);
-		setButton(enterButton, 175, 25, 100, 500);
-		setButton(exitButton, 100, 25, 300, 500);
+		elementSetter.setImageView(mapImgView, 25, 25);
+		elementSetter.setButton(enterButton, 175, 25, 100, 500);
+		elementSetter.setButton(exitButton, 100, 25, 300, 500);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
 			try {
-				returnCustomerValues.returnCarOnPointList(nearestPoint(
+				returnCustomerValues.returnCarOnPointList(pointManager.nearestPoint(
 						(customerPoint.getCenterX() - 25) + "",
 						(customerPoint.getCenterY() - 25) + "", pointCoordinates)
 						).get(0);
@@ -170,14 +177,14 @@ public class CarSharing extends Application {
 		});
 
 		// Movable point on Image
-		setCustomerPoint(mapImgView, customerPoint);
+		pointManager.setCustomerPoint(mapImgView, customerPoint);
 
 		// Create and setting Pane
 		Pane root = new Pane();
 		root.getChildren().addAll(mapImgView, enterButton, exitButton);
 
 		// Create point and add on Image
-		root.getChildren().addAll(paintPoint());
+		root.getChildren().addAll(pointManager.paintPoint());
 		root.getChildren().add(customerPoint);
 
 		// Create and setting window
@@ -198,7 +205,7 @@ public class CarSharing extends Application {
 		AddValues addValues = new AddValues();
 		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues();
 		ArrayList<Integer> pointCoordinates = new ArrayList<>(returnCustomerValues.returnPointCoordinateList());
-		String nearestPointAddress = nearestPoint(x, y, pointCoordinates);
+		String nearestPointAddress = pointManager.nearestPoint(x, y, pointCoordinates);
 
 		// Create Interface Elements
 		ObservableList<String> listCar = FXCollections.observableArrayList(returnCustomerValues.returnCarOnPointList(nearestPointAddress));
@@ -209,11 +216,11 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		setComboBox(carBox, 250, 25, 125, 75);
-		setTextLabel(carText, 25, 80);
-		setTextLabel(pointText, 100, 30);
-		setButton(createContractButton, 150, 25, 125, 125);
-		setButton(backButton, 75, 25, 300, 125);
+		elementSetter.setComboBox(carBox, 250, 25, 125, 75);
+		elementSetter.setTextLabel(carText, 25, 80);
+		elementSetter.setTextLabel(pointText, 100, 30);
+		elementSetter.setButton(createContractButton, 150, 25, 125, 125);
+		elementSetter.setButton(backButton, 75, 25, 300, 125);
 
 		// Set on Action Buttons
 		createContractButton.setOnAction(e -> {
@@ -276,14 +283,14 @@ public class CarSharing extends Application {
 		Button exitButton = new Button("Exit");
 
 		// Interface Elements sizes and settings
-		setTextField(firstNameTextField, 200, 25, 125, 25);
-		setTextField(lastNameTextField, 200, 25, 125, 75);
-		setTextField(licenseTextField, 200, 25, 125, 125);
-		setTextLabel(firstNameText, 20, 30);
-		setTextLabel(lastNameText, 20, 80);
-		setTextLabel(licenseText, 20, 130);
-		setButton(registrationButton, 150, 25, 50, 175);
-		setButton(exitButton, 100, 25, 225, 175);
+		elementSetter.setTextField(firstNameTextField, 200, 25, 125, 25);
+		elementSetter.setTextField(lastNameTextField, 200, 25, 125, 75);
+		elementSetter.setTextField(licenseTextField, 200, 25, 125, 125);
+		elementSetter.setTextLabel(firstNameText, 20, 30);
+		elementSetter.setTextLabel(lastNameText, 20, 80);
+		elementSetter.setTextLabel(licenseText, 20, 130);
+		elementSetter.setButton(registrationButton, 150, 25, 50, 175);
+		elementSetter.setButton(exitButton, 100, 25, 225, 175);
 
 		// Set on Action Buttons
 		registrationButton.setOnAction(e -> {
@@ -370,9 +377,9 @@ public class CarSharing extends Application {
 		Button enterButton = new Button("Enter");
 
 		// Interface Elements sizes and settings
-		setTextField(loginTextField, 200, 25, 75, 25);
-		setTextLabel(loginText, 25, 30);
-		setButton(enterButton, 100, 25, 175, 75);
+		elementSetter.setTextField(loginTextField, 200, 25, 75, 25);
+		elementSetter.setTextLabel(loginText, 25, 30);
+		elementSetter.setButton(enterButton, 100, 25, 175, 75);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
@@ -424,8 +431,8 @@ public class CarSharing extends Application {
 		Button newPointButton = new Button("Add a lease point");
 
 		// Interface Elements sizes and settings
-		setButton(newCarButton, 250, 50, 25, 25);
-		setButton(newPointButton, 250, 50, 25, 100);
+		elementSetter.setButton(newCarButton, 250, 50, 25, 25);
+		elementSetter.setButton(newPointButton, 250, 50, 25, 100);
 
 		// Set on Action Buttons
 		newCarButton.setOnAction(e -> aggregatorAddCarWindow(secondStage));
@@ -470,14 +477,14 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		setComboBox(pointBox, 250, 25, 125, 25);
-		setComboBox(carBox, 250, 25, 125, 75);
-		setTextField(carPlateTextField, 150, 25, 150, 125);
-		setTextLabel(pointText, 25, 30);
-		setTextLabel(modelText, 25, 80);
-		setTextLabel(plateText, 25, 130);
-		setButton(addCarButton, 175, 25, 75, 175);
-		setButton(backButton, 100, 25, 275, 175);
+		elementSetter.setComboBox(pointBox, 250, 25, 125, 25);
+		elementSetter.setComboBox(carBox, 250, 25, 125, 75);
+		elementSetter.setTextField(carPlateTextField, 150, 25, 150, 125);
+		elementSetter.setTextLabel(pointText, 25, 30);
+		elementSetter.setTextLabel(modelText, 25, 80);
+		elementSetter.setTextLabel(plateText, 25, 130);
+		elementSetter.setButton(addCarButton, 175, 25, 75, 175);
+		elementSetter.setButton(backButton, 100, 25, 275, 175);
 
 		// Set on Action Buttons
 		addCarButton.setOnAction(e -> {
@@ -551,7 +558,7 @@ public class CarSharing extends Application {
 
 		// Create Interface Elements
 		TextField addressTextField = new TextField();
-		Circle customerPoint = getCustomerPoint();
+		Circle customerPoint = pointManager.getCustomerPoint();
 		Image mapImg = new Image((Objects.requireNonNull(
 				this.getClass().getClassLoader().getResource("Background.jpg"))).toString());
 		ImageView mapImgView = new ImageView(mapImg);
@@ -560,12 +567,11 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		mapImgView.setLayoutX(25);
-		mapImgView.setLayoutY(25);
-		setTextField(addressTextField, 175, 25, 125, 500);
-		setTextLabel(addressText, 25, 505);
-		setButton(addPointButton, 150, 25, 25, 550);
-		setButton(backButton, 100, 25, 200, 550);
+		elementSetter.setImageView(mapImgView, 25, 25);
+		elementSetter.setTextField(addressTextField, 175, 25, 125, 500);
+		elementSetter.setTextLabel(addressText, 25, 505);
+		elementSetter.setButton(addPointButton, 150, 25, 25, 550);
+		elementSetter.setButton(backButton, 100, 25, 200, 550);
 
 		// Set on Action Buttons
 		addPointButton.setOnAction(e ->{
@@ -615,7 +621,7 @@ public class CarSharing extends Application {
 		});
 
 		// Movable point on Image
-		setCustomerPoint(mapImgView, customerPoint);
+		pointManager.setCustomerPoint(mapImgView, customerPoint);
 
 		// Create and setting Pane
 		Pane root = new Pane();
@@ -634,155 +640,19 @@ public class CarSharing extends Application {
 		secondStage.setScene(scene);
 		secondStage.show();		
 	}
-		
-	// Interface Elements sizes and settings methods
-	// Set Text Field
-	public void setTextField(
-			TextField settableTF,
-			int xSize,
-			int ySize,
-			int xLayout,
-			int yLayout) {
 
-		settableTF.setPrefSize(xSize, ySize);
-		settableTF.setLayoutX(xLayout);
-		settableTF.setLayoutY(yLayout);
-	}
-
-	// Set Text Label
-	public void setTextLabel(
-			Label settableLabel,
-			int xLayout,
-			int yLayout) {
-
-		settableLabel.setLayoutX(xLayout);
-		settableLabel.setLayoutY(yLayout);
-	}
-
-	// Set Button
-	public void setButton(
-			Button settableB,
-			int xSize,
-			int ySize,
-			int xLayout,
-			int yLayout) {
-
-		settableB.setPrefSize(xSize, ySize);
-		settableB.setLayoutX(xLayout);
-		settableB.setLayoutY(yLayout);
-	}
-
-	// Set ComboBox
-	public void setComboBox(
-			ComboBox<String> settableBox,
-			int xSize,
-			int ySize,
-			int xLayout,
-			int yLayout) {
-
-		settableBox.setPrefSize(xSize, ySize);
-		settableBox.setLayoutX(xLayout);
-		settableBox.setLayoutY(yLayout);
-	}
-	
 	// Other methods
 	// Is not numeric
 	public boolean isNotNumeric(String str) {
 
-		try {  
-			Double.parseDouble(str);  
+		try {
+			Double.parseDouble(str);
 			return false;
-		} catch(NumberFormatException e){  
-			return true;  
-		}  
-	}
-
-	// Create Points
-	public Circle[] paintPoint() {
-
-		ReturnCustomerValues rcv = new ReturnCustomerValues();
-		ArrayList<Integer> pointCoordinates;
-		pointCoordinates = rcv.returnPointCoordinateList();
-		
-		int pointQuantity = pointCoordinates.size()/2 ;
-		int i;
-		
-		Circle[] circles = new Circle[pointQuantity + 1];
-		for (i = 0; i < pointQuantity; i++) {
-			circles[i] = new Circle(
-					pointCoordinates.get(i*2) + 25,
-					pointCoordinates.get(i*2 + 1) + 25,
-					6);
-			circles[i].setStroke(Color.WHITE);
+		} catch(NumberFormatException e){
+			return true;
 		}
-		
-		circles[i] = new Circle (
-				pointCoordinates.get((i - 1)*2) + 25,
-				pointCoordinates.get((i - 1)*2 + 1) + 25,
-				6);
-		
-		return circles;
 	}
 
-	//Find the nearest Point
-	public String nearestPoint(
-			String x,
-			String y,
-			ArrayList<Integer> pointCoordinates) {
-
-		ReturnCustomerValues rcv = new ReturnCustomerValues();
-		
-		double xInt = Double.parseDouble(x);
-		double yInt = Double.parseDouble(y);
-		int pointQuantity = pointCoordinates.size()/2;
-		double min = 300;
-		int pointNumber = -1;
-		
-		double[] length = new double[pointQuantity];
-		for (int i = 0; i < pointQuantity; i++) {
-			length[i] = Math.sqrt(
-					((pointCoordinates.get(i*2) - xInt)*(pointCoordinates.get(i*2) - xInt))
-					+ ((pointCoordinates.get(i*2 + 1) - yInt)*(pointCoordinates.get(i*2 + 1) - yInt))
-			);
-		}
-		
-		for (int i = 0; i < pointQuantity; i++) {
-			if (length[i] < min) {
-				min = length[i];
-				pointNumber = i + 1;
-			}
-		}
-		
-		return rcv.getNearestPointAddress(pointNumber);
-	}
-
-	// Set location Point
-	public void setCustomerPoint(ImageView map, Circle customerPoint) {
-
-		map.setOnMousePressed(me -> {
-			customerPoint.setCenterX(me.getX() + 25);
-			customerPoint.setCenterY(me.getY() + 25);
-		});
-	}
-
-	// Get Location Point
-	public Circle getCustomerPoint() {
-
-		ReturnCustomerValues rcv = new ReturnCustomerValues();
-		ArrayList<Integer> pointCoordinates;
-		pointCoordinates = rcv.returnPointCoordinateList();
-		
-		int pointQuantity = pointCoordinates.size()/2 ;
-		
-		Circle circle = new Circle(
-				pointCoordinates.get((pointQuantity - 1)*2) + 25,
-				pointCoordinates.get((pointQuantity - 1)*2 + 1) + 25,
-				6);
-		circle.setStroke(Color.WHITE);
-		
-		return circle;
-	}
-	
 	// Main method
 	public static void main(String[] args) {
 		launch(args);

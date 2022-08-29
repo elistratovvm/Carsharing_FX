@@ -1,6 +1,6 @@
-package application;
+package service.database;
 
-import service.DatabaseConnector;
+import service.database.DatabaseConnector;
 
 import java.sql.ResultSet;
 import java.sql.Statement;

@@ -4,18 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;Fixed NullPointerException when user goes to the map window.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/AuthorizationChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ojdbc8_full.xml" beforeDir="false" />
+    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="End of migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;All authorization check moved to new class.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ElementSetter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/PointManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Carsharing_FX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Carsharing_FX.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/AddValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/AddValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/AggregatorAuthorization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/AddValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AddValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/AuthorizationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/CustomerAuthorization.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/ReturnAggregatorValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/ReturnCustomerValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/ReturnCustomerValues.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DatabaseConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/DatabaseConnector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +32,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/application/ReturnAggregatorValues.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/service/database/ReturnAggregatorValues.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/application/CarSharing.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/application/AddValues.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/application/ReturnCustomerValues.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/service/database/AddValues.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/service/database/ReturnCustomerValues.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/module-info.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -74,7 +73,7 @@
       <module name="Carsharing_FX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="application.*" />
+          <option name="PATTERN" value="service.database.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661506413801</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="End of migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;All authorization check moved to new class.">
+      <created>1661758942264</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1661758942264</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +168,7 @@
     <MESSAGE value="Syntax rewriting&#10;Other class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability;&#10;&#10;Added postgres library" />
     <MESSAGE value="DB connection away&#10;from other class in new class" />
     <MESSAGE value="Migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;Fixed NullPointerException when user goes to the map window." />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;Fixed NullPointerException when user goes to the map window." />
+    <MESSAGE value="End of migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;All authorization check moved to new class." />
+    <option name="LAST_COMMIT_MESSAGE" value="End of migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;All authorization check moved to new class." />
   </component>
 </project>

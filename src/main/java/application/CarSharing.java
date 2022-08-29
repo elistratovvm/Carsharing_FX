@@ -57,7 +57,7 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		CustomerAuthorization customerAuthorization = new CustomerAuthorization();
+		AuthorizationChecker authorizationChecker = new AuthorizationChecker();
 		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues();
 
 		// Create Interface Elements
@@ -87,7 +87,7 @@ public class CarSharing extends Application {
 			else {
 
 				// Check Login
-				if (customerAuthorization.checkCustomerAuthorization(login)) {
+				if (authorizationChecker.checkCustomerAuthorization(login)) {
 					customerActionWindow(secondStage, returnCustomerValues.returnCustomerId(login));
 				}
 				else {
@@ -149,7 +149,7 @@ public class CarSharing extends Application {
 						(customerPoint.getCenterX() - 25) + "",
 						(customerPoint.getCenterY() - 25) + "", pointCoordinates)
 						).get(0);
-				customerCreateContract(
+				customerCreateContractWindow(
 						(customerPoint.getCenterX() - 25) + "",
 						(customerPoint.getCenterY() - 25) + "",
 						login);
@@ -189,7 +189,7 @@ public class CarSharing extends Application {
 	}
 
 	//Customer Sign Contract
-	public void customerCreateContract(String x, String y, String login) {
+	public void customerCreateContractWindow(String x, String y, String login) {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -362,7 +362,7 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		AggregatorAuthorization aggregatorAuthorization = new AggregatorAuthorization();
+		AuthorizationChecker authorizationChecker = new AuthorizationChecker();
 
 		// Create Interface Elements
 		TextField loginTextField = new TextField();
@@ -385,7 +385,7 @@ public class CarSharing extends Application {
 						JOptionPane.ERROR_MESSAGE);
 			}
 			else {
-				if (aggregatorAuthorization.checkAggregatorAuthorization(login)) {
+				if (authorizationChecker.checkAggregatorAuthorization(login)) {
 					aggregatorActionWindow(secondStage);
 				}
 				else {
@@ -428,8 +428,8 @@ public class CarSharing extends Application {
 		setButton(newPointButton, 250, 50, 25, 100);
 
 		// Set on Action Buttons
-		newCarButton.setOnAction(e -> aggregatorAddCar(secondStage));
-		newPointButton.setOnAction(e -> aggregatorAddPoint(secondStage));
+		newCarButton.setOnAction(e -> aggregatorAddCarWindow(secondStage));
+		newPointButton.setOnAction(e -> aggregatorAddPointWindow(secondStage));
 
 		// Create and setting Pane
 		Pane root = new Pane();
@@ -444,7 +444,7 @@ public class CarSharing extends Application {
 	}
 
 	// Aggregator Add Car
-	public void aggregatorAddCar(Stage primaryStage) {
+	public void aggregatorAddCarWindow(Stage primaryStage) {
 
 		// Close Primary Stage
 		primaryStage.close();
@@ -538,7 +538,7 @@ public class CarSharing extends Application {
 	}
 
 	//Aggregator Add Point
-	public void aggregatorAddPoint(Stage primaryStage) {
+	public void aggregatorAddPointWindow(Stage primaryStage) {
 
 		// close Primary Stage
 		primaryStage.close();

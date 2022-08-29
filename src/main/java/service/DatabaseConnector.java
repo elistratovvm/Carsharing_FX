@@ -10,6 +10,7 @@ public class DatabaseConnector {
     public DatabaseConnector() {
 
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/carshering", "postgres", "postgres");
 

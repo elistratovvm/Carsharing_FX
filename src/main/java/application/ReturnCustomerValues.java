@@ -2,8 +2,6 @@ package application;
 
 import service.DatabaseConnector;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -47,11 +45,8 @@ public class ReturnCustomerValues {
 					+ "FROM contract_details "
 					+ "WHERE contract_date != SYSDATE)))";
 
-			Connection conn = new DatabaseConnector().getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement(query,
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			ResultSet resultSet = preparedStatement.executeQuery(query);
+			Statement statement = new DatabaseConnector().getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
 			
 			while (resultSet.next()) {
 				carList.add("Plate: " + resultSet.getString(1) +
@@ -101,12 +96,8 @@ public class ReturnCustomerValues {
 					+ " FROM lease_points "
 					+ "WHERE id = '" + getValue(pointNumber)+ "'";
 
-			Class.forName("org.postgresql.Driver");
-			Connection conn = new DatabaseConnector().getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement(query,
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			ResultSet resultSet = preparedStatement.executeQuery(query);
+			Statement statement = new DatabaseConnector().getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
 
 			resultSet.next();
 			
@@ -127,11 +118,8 @@ public class ReturnCustomerValues {
 					+ " FROM lease_points "
 					+ "WHERE address = '" + nearestPointAddress + "'";
 
-			Connection conn = new DatabaseConnector().getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement(query,
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			ResultSet resultSet = preparedStatement.executeQuery(query);
+			Statement statement = new DatabaseConnector().getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
 
 			resultSet.next();
 			

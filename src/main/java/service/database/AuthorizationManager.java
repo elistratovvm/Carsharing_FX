@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class AuthorizationChecker {
+public class AuthorizationManager {
 
     Connection connection;
 
-    public AuthorizationChecker(Connection connection) {
+    public AuthorizationManager(Connection connection) {
         this.connection = connection;
     }
 
-    // Check Aggregator
+    // Check aggregator
     public boolean checkAggregatorAuthorization(String login) {
 
         try {
@@ -24,14 +24,14 @@ public class AuthorizationChecker {
             ResultSet resultSet = statement.executeQuery(query);
 
             return resultSet.next();
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
         return false;
     }
 
-    // Check Customer
+    // Check customer
     public boolean checkCustomerAuthorization(String login) {
 
         try {
@@ -43,10 +43,28 @@ public class AuthorizationChecker {
             ResultSet resultSet = statement.executeQuery(query);
 
             return resultSet.next();
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
         return false;
+    }
+
+    // Create new customer
+    public void createCustomer(String firstName, String lastName, String license) {
+
+        try {
+            String lastIdCustomer = new Servicer(connection).getLastValueId("SELECT id FROM customers");
+            String query = "INSERT INTO customers (id, first_name, last_name, drivers_license) "
+                    + "VALUES ('" + lastIdCustomer + "', '" + firstName + "', '" + lastName + "', '" + license + "')";
+
+            Statement statement = new DatabaseConnector().getConnection().createStatement();
+
+            statement.execute(query);
+
+            statement.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

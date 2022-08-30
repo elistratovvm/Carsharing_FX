@@ -72,8 +72,8 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		AuthorizationChecker authorizationChecker = new AuthorizationChecker(connection);
-		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues(connection);
+		AuthorizationManager authorizationManager = new AuthorizationManager(connection);
+		CustomerManager customerManager = new CustomerManager(connection);
 
 		// Create Interface Elements
 		TextField loginTextField = new TextField();
@@ -102,8 +102,8 @@ public class CarSharing extends Application {
 			else {
 
 				// Check Login
-				if (authorizationChecker.checkCustomerAuthorization(login)) {
-					customerActionWindow(secondStage, returnCustomerValues.returnCustomerId(login));
+				if (authorizationManager.checkCustomerAuthorization(login)) {
+					customerActionWindow(secondStage, customerManager.getCustomerID(login));
 				}
 				else {
 					JOptionPane.showMessageDialog(
@@ -140,8 +140,6 @@ public class CarSharing extends Application {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
-		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues(connection);
-		ArrayList<Integer> pointCoordinates = new ArrayList<>(returnCustomerValues.returnPointCoordinateList());
 
 		// Create Interface Elements
 		Circle customerPoint = pointManager.getCustomerPoint();
@@ -159,10 +157,6 @@ public class CarSharing extends Application {
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
 			try {
-				returnCustomerValues.returnCarOnPointList(pointManager.nearestPoint(
-						(customerPoint.getCenterX() - 25) + "",
-						(customerPoint.getCenterY() - 25) + "", pointCoordinates)
-						).get(0);
 				customerCreateContractWindow(
 						(customerPoint.getCenterX() - 25) + "",
 						(customerPoint.getCenterY() - 25) + "",
@@ -209,13 +203,13 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		AddValues addValues = new AddValues(connection);
-		ReturnCustomerValues returnCustomerValues = new ReturnCustomerValues(connection);
-		ArrayList<Integer> pointCoordinates = new ArrayList<>(returnCustomerValues.returnPointCoordinateList());
-		String nearestPointAddress = pointManager.nearestPoint(x, y, pointCoordinates);
+		CustomerManager customerManager = new CustomerManager(connection);
+		CarGetter carGetter = new CarGetter(connection);
+		ArrayList<Integer> pointCoordinates = new ArrayList<>(pointManager.getPointCoordinateList());
+		String nearestPointAddress = pointManager.calculateNearestPoint(x, y, pointCoordinates);
 
 		// Create Interface Elements
-		ObservableList<String> listCar = FXCollections.observableArrayList(returnCustomerValues.returnCarOnPointList(nearestPointAddress));
+		ObservableList<String> listCar = FXCollections.observableArrayList(carGetter.getCarOnPointList(nearestPointAddress));
 		ComboBox<String> carBox = new ComboBox<>(listCar);
 		Label carText = new Label("Choose a car");
 		Label pointText = new Label("Nearest point: " + nearestPointAddress);
@@ -232,7 +226,7 @@ public class CarSharing extends Application {
 		// Set on Action Buttons
 		createContractButton.setOnAction(e -> {
 			try {
-				addValues.addContract(carBox.getValue().substring(7, 13), login);
+				customerManager.createContract(carBox.getValue().substring(7, 13), login);
 				JOptionPane.showMessageDialog(
 						null,
 						"Contract Created!",
@@ -262,7 +256,7 @@ public class CarSharing extends Application {
 		// Create and setting window
 		Scene scene = new Scene(root, 400, 175);
 		secondStage.initModality(Modality.APPLICATION_MODAL);
-		secondStage.setTitle("Aggregator Window");
+		secondStage.setTitle("Choose a car");
 		secondStage.setScene(scene);
 		secondStage.show();
 	}
@@ -274,7 +268,7 @@ public class CarSharing extends Application {
 		primaryStage.close();
 
 		// Create local variables and Object
-		AddValues addValues = new AddValues(connection);
+		AuthorizationManager authorizationManager = new AuthorizationManager(connection);
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -327,7 +321,7 @@ public class CarSharing extends Application {
 			}
 			else {
 				try {
-					addValues.addCustomer(firstName, lastName, license);
+					authorizationManager.createCustomer(firstName, lastName, license);
 					JOptionPane.showMessageDialog(
 							null,
 							new String[] {
@@ -376,7 +370,7 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		AuthorizationChecker authorizationChecker = new AuthorizationChecker(connection);
+		AuthorizationManager authorizationManager = new AuthorizationManager(connection);
 
 		// Create Interface Elements
 		TextField loginTextField = new TextField();
@@ -399,7 +393,7 @@ public class CarSharing extends Application {
 						JOptionPane.ERROR_MESSAGE);
 			}
 			else {
-				if (authorizationChecker.checkAggregatorAuthorization(login)) {
+				if (authorizationManager.checkAggregatorAuthorization(login)) {
 					aggregatorActionWindow(secondStage);
 				}
 				else {
@@ -467,12 +461,12 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		ReturnAggregatorValues returnAggregatorValues = new ReturnAggregatorValues(connection);
-		AddValues addValues = new AddValues(connection);
+		AggregatorManager aggregatorManager = new AggregatorManager(connection);
+		CarGetter carGetter = new CarGetter(connection);
 
 		// Create Interface Elements
-		ObservableList<String> pointList = FXCollections.observableArrayList(returnAggregatorValues.returnPointAddressList());
-		ObservableList<String> carList = FXCollections.observableArrayList(returnAggregatorValues.returnCarList());
+		ObservableList<String> pointList = FXCollections.observableArrayList(pointManager.getPointAddressList());
+		ObservableList<String> carList = FXCollections.observableArrayList(carGetter.getCarList());
 		ComboBox<String> pointBox = new ComboBox<>(pointList);
 		ComboBox<String> carBox = new ComboBox<>(carList);
 		TextField carPlateTextField = new TextField();
@@ -505,7 +499,7 @@ public class CarSharing extends Application {
 			}
 			else {
 				try {
-					addValues.addCar(pointBox.getValue(), carBox.getValue(), plate);
+					aggregatorManager.addCar(pointBox.getValue(), carBox.getValue(), plate);
 					JOptionPane.showMessageDialog(
 							null,
 							new String[] {
@@ -558,7 +552,7 @@ public class CarSharing extends Application {
 		primaryStage.close();
 
 		// Create local variables and Object
-		AddValues addValues = new AddValues(connection);
+		AggregatorManager aggregatorManager = new AggregatorManager(connection);
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -610,7 +604,7 @@ public class CarSharing extends Application {
 						JOptionPane.ERROR_MESSAGE);
 			}
 			else {
-				addValues.addPoint(address, x, y);
+				aggregatorManager.addPoint(address, x, y);
 				JOptionPane.showMessageDialog(
 						null,
 						new String[] {

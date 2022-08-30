@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class PointManager {
@@ -15,12 +17,165 @@ public class PointManager {
         this.connection = connection;
     }
 
+    // Get Location Point
+    public Circle getCustomerPoint() {
+
+        ArrayList<Integer> pointCoordinates;
+        pointCoordinates = getPointCoordinateList();
+
+        int pointQuantity = pointCoordinates.size()/2 ;
+
+        Circle circle = new Circle(
+                pointCoordinates.get((pointQuantity - 1)*2) + 25,
+                pointCoordinates.get((pointQuantity - 1)*2 + 1) + 25,
+                6);
+        circle.setStroke(Color.WHITE);
+
+        return circle;
+    }
+
+    // Set location Point
+    public void setCustomerPoint(ImageView map, Circle customerPoint) {
+
+        map.setOnMousePressed(me -> {
+            customerPoint.setCenterX(me.getX() + 25);
+            customerPoint.setCenterY(me.getY() + 25);
+        });
+    }
+
+    // Get Point id from Address
+    public String getPointIDFromAddress(String point) {
+
+        try {
+            String query = "SELECT id " +
+                    "FROM lease_points " +
+                    "WHERE address = '" + point + "'";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            resultSet.next();
+
+            return resultSet.getString(1);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // Get ID Point from number
+    public String getPointIDFromNumber(int pointNumber) {
+
+        try {
+
+            return "p" + "0".repeat(Math.max(0, 5 - String.valueOf(pointNumber).length() - 1)) +
+                    pointNumber;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // Get ID nearest Point from Address
+    // !Copy functionality of getPointIDFromAddress method  !
+    // !Delete in future update                             !
+    public String getNearestPointId(String nearestPointAddress) {
+
+        try {
+            String query = "SELECT id address "
+                    + " FROM lease_points "
+                    + "WHERE address = '" + nearestPointAddress + "'";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            resultSet.next();
+
+            return resultSet.getString(1);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // Get Address the nearest Point from ID
+    public String getNearestPointAddress(int pointNumber) {
+
+        try {
+            String query = "SELECT address "
+                    + " FROM lease_points "
+                    + "WHERE id = '" + getPointIDFromNumber(pointNumber)+ "'";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            resultSet.next();
+
+            return resultSet.getString(1);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // Get Point Address List
+    public ArrayList<String> getPointAddressList() {
+
+        ArrayList<String> idList = new ArrayList<>();
+        try {
+            String query = "SELECT address"
+                    + " FROM lease_points";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                idList.add(resultSet.getString(1));
+            }
+
+            return idList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return idList;
+    }
+
+    // Get Point Coordinate List
+    public ArrayList<Integer> getPointCoordinateList() {
+
+        ArrayList<Integer> coordinateList = new ArrayList<>();
+        try {
+            String query = "SELECT x_coordinate, y_coordinate "
+                    + " FROM lease_points";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                coordinateList.add(Integer.parseInt(resultSet.getString(1)));
+                coordinateList.add(Integer.parseInt(resultSet.getString(2)));
+            }
+
+            return coordinateList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return coordinateList;
+    }
+
     // Create Points
     public Circle[] paintPoint() {
 
-        ReturnCustomerValues rcv = new ReturnCustomerValues(connection);
         ArrayList<Integer> pointCoordinates;
-        pointCoordinates = rcv.returnPointCoordinateList();
+        pointCoordinates = getPointCoordinateList();
 
         int pointQuantity = pointCoordinates.size()/2 ;
         int i;
@@ -42,13 +197,11 @@ public class PointManager {
         return circles;
     }
 
-    //Find the nearest Point
-    public String nearestPoint(
+    //Calculate the nearest Point
+    public String calculateNearestPoint(
             String x,
             String y,
             ArrayList<Integer> pointCoordinates) {
-
-        ReturnCustomerValues rcv = new ReturnCustomerValues(connection);
 
         double xInt = Double.parseDouble(x);
         double yInt = Double.parseDouble(y);
@@ -71,33 +224,6 @@ public class PointManager {
             }
         }
 
-        return rcv.getNearestPointAddress(pointNumber);
-    }
-
-    // Set location Point
-    public void setCustomerPoint(ImageView map, Circle customerPoint) {
-
-        map.setOnMousePressed(me -> {
-            customerPoint.setCenterX(me.getX() + 25);
-            customerPoint.setCenterY(me.getY() + 25);
-        });
-    }
-
-    // Get Location Point
-    public Circle getCustomerPoint() {
-
-        ReturnCustomerValues rcv = new ReturnCustomerValues(connection);
-        ArrayList<Integer> pointCoordinates;
-        pointCoordinates = rcv.returnPointCoordinateList();
-
-        int pointQuantity = pointCoordinates.size()/2 ;
-
-        Circle circle = new Circle(
-                pointCoordinates.get((pointQuantity - 1)*2) + 25,
-                pointCoordinates.get((pointQuantity - 1)*2 + 1) + 25,
-                6);
-        circle.setStroke(Color.WHITE);
-
-        return circle;
+        return getNearestPointAddress(pointNumber);
     }
 }

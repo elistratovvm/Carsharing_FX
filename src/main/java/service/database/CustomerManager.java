@@ -44,10 +44,10 @@ public class CustomerManager {
 		try {
 			String lastIdContract = servicer.getLastValueId("SELECT id FROM contracts");
 			String ctrQuery = "INSERT INTO contracts (id, agr_id, ctr_id) "
-					+ "VALUES ('" + lastIdContract + "', 'a01', '" + login + "')";
+					+ "VALUES (" + lastIdContract + ", 1, " + login + ")";
 			String cttQuery = "INSERT INTO contract_details (ctt_id, car_id, contract_date) "
-					+ "VALUES ('" + lastIdContract + "', '" + new CarGetter(connection).getCarIdFromPlate(plate)
-					+ "', CURRENT_DATE)";
+					+ "VALUES (" + lastIdContract + ", " + new CarGetter(connection).getCarIdFromPlate(plate)
+					+ ", CURRENT_DATE)";
 
 			Statement statement1 = connection.createStatement();
 			Statement statement2 = connection.createStatement();

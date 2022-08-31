@@ -20,15 +20,20 @@ public class Servicer {
                     ResultSet.CONCUR_READ_ONLY);
             ResultSet resultSet = statement.executeQuery(query);
 
-            resultSet.next();
-            resultSet.last();
+            int lastIntValue;
 
-            String lastValue = resultSet.getString(1);
-            int lastIntValue = Integer.parseInt(lastValue.substring(1));
-            lastIntValue++;
+            if (resultSet.next()) {
 
-            return lastValue.charAt(0) + "0".repeat(Math.max(0, lastValue.length() - String.valueOf(lastIntValue).length() - 1)) +
-                    lastIntValue;
+                resultSet.last();
+                String lastValue = resultSet.getString(1);
+                lastIntValue = Integer.parseInt(lastValue);
+                lastIntValue++;
+            } else {
+
+                lastIntValue = 1;
+            }
+
+            return String.valueOf(lastIntValue);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

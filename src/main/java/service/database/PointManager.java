@@ -64,20 +64,6 @@ public class PointManager {
         return null;
     }
 
-    // Get ID Point from number
-    public String getPointIDFromNumber(int pointNumber) {
-
-        try {
-
-            return "p" + "0".repeat(Math.max(0, 5 - String.valueOf(pointNumber).length() - 1)) +
-                    pointNumber;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
     // Get ID nearest Point from Address
     // !Copy functionality of getPointIDFromAddress method  !
     // !Delete in future update                             !
@@ -94,7 +80,6 @@ public class PointManager {
             resultSet.next();
 
             return resultSet.getString(1);
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -108,7 +93,8 @@ public class PointManager {
         try {
             String query = "SELECT address "
                     + " FROM lease_points "
-                    + "WHERE id = '" + getPointIDFromNumber(pointNumber)+ "'";
+                    //+ "WHERE id = '" + getPointIDFromNumber(pointNumber)+ "'";
+                    + "WHERE id = '" + pointNumber + "'";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);

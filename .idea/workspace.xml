@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Restructuring database connection&#10;Now application connecting for database 1 time">
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/database/CarGetter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/database/Servicer.java" afterDir="false" />
+    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Restructuring code&#10;Code was restructured for better object model match.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AddValues.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/fill.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fill.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/ReturnAggregatorValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/ReturnCustomerValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/Servicer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/Servicer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661764958181</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Restructuring code&#10;Code was restructured for better object model match.">
+      <created>1661866159243</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1661866159243</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,6 +187,18 @@
     <MESSAGE value="End of migrate to PostgreSQL&#10;All database connection rewrite for postgres jdbc.&#10;All authorization check moved to new class." />
     <MESSAGE value="Restructuring&#10;Part of methods of CarSharing class moved in new class.&#10;All backend methods moved in new package." />
     <MESSAGE value="Restructuring database connection&#10;Now application connecting for database 1 time" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructuring database connection&#10;Now application connecting for database 1 time" />
+    <MESSAGE value="Restructuring code&#10;Code was restructured for better object model match." />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructuring code&#10;Code was restructured for better object model match." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

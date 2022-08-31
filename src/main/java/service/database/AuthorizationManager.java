@@ -20,7 +20,7 @@ public class AuthorizationManager {
                     + "FROM aggregators "
                     + "WHERE id = '" + login + "'";
 
-            Statement statement = new DatabaseConnector().getConnection().createStatement();
+            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
             return resultSet.next();
@@ -39,7 +39,7 @@ public class AuthorizationManager {
                     + "FROM customers "
                     + "WHERE drivers_license = '" + login + "'";
 
-            Statement statement = new DatabaseConnector().getConnection().createStatement();
+            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
             return resultSet.next();
@@ -58,7 +58,7 @@ public class AuthorizationManager {
             String query = "INSERT INTO customers (id, first_name, last_name, drivers_license) "
                     + "VALUES ('" + lastIdCustomer + "', '" + firstName + "', '" + lastName + "', '" + license + "')";
 
-            Statement statement = new DatabaseConnector().getConnection().createStatement();
+            Statement statement = connection.createStatement();
 
             statement.execute(query);
 

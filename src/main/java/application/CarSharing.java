@@ -26,9 +26,10 @@ import java.util.Objects;
 
 public class CarSharing extends Application {
 
-	Connection connection = new DatabaseConnector().getConnection();
+	static String url;
+	static String user;
+	static String password;
 	ElementSetter elementSetter = new ElementSetter();
-	PointManager pointManager = new PointManager(connection);
 
 	@Override
 	// Start Window
@@ -55,13 +56,6 @@ public class CarSharing extends Application {
 		primaryStage.setTitle("Car sharing App");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		primaryStage.setOnCloseRequest(e -> {
-			try {
-				connection.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-		});
 	}
 
 	// Windows methods
@@ -72,6 +66,7 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
+		Connection connection = new DatabaseConnector(url, user, password).getConnection();
 		AuthorizationManager authorizationManager = new AuthorizationManager(connection);
 		CustomerManager customerManager = new CustomerManager(connection);
 
@@ -103,7 +98,7 @@ public class CarSharing extends Application {
 
 				// Check Login
 				if (authorizationManager.checkCustomerAuthorization(login)) {
-					customerActionWindow(secondStage, customerManager.getCustomerID(login));
+					customerActionWindow(secondStage, customerManager.getCustomerID(login), connection);
 				}
 				else {
 					JOptionPane.showMessageDialog(
@@ -114,7 +109,7 @@ public class CarSharing extends Application {
 				}
 			}
 		});
-		registrationButton.setOnAction(e -> customerRegistrationWindow(secondStage));
+		registrationButton.setOnAction(e -> customerRegistrationWindow(secondStage, connection));
 
 		// Create and setting Pane
 		Pane root = new Pane();
@@ -133,13 +128,16 @@ public class CarSharing extends Application {
 	}
 
 	// Customer Action Window
-	public void customerActionWindow(Stage primaryStage, String login) {
+	public void customerActionWindow(Stage primaryStage, String login, Connection connection) {
 
 		// Close Primary Stage
 		primaryStage.close();
 
 		// Create new Stage
 		Stage secondStage = new Stage();
+
+		// Create local variables and Object
+		PointManager pointManager = new PointManager(connection);
 
 		// Create Interface Elements
 		Circle customerPoint = pointManager.getCustomerPoint();
@@ -160,7 +158,9 @@ public class CarSharing extends Application {
 				customerCreateContractWindow(
 						(customerPoint.getCenterX() - 25) + "",
 						(customerPoint.getCenterY() - 25) + "",
-						login);
+						login,
+						connection,
+						pointManager);
 			}
 			catch (IndexOutOfBoundsException ex) {
 				JOptionPane.showMessageDialog(
@@ -194,10 +194,22 @@ public class CarSharing extends Application {
 		secondStage.setTitle("Customer Window");
 		secondStage.setScene(scene);
 		secondStage.show();
+		secondStage.setOnCloseRequest(e -> {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		});
 	}
 
 	//Customer Sign Contract
-	public void customerCreateContractWindow(String x, String y, String login) {
+	public void customerCreateContractWindow(
+			String x,
+			String y,
+			String login,
+			Connection connection,
+			PointManager pointManager) {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -262,7 +274,7 @@ public class CarSharing extends Application {
 	}
 
 	// Customer Registration
-	public void customerRegistrationWindow(Stage primaryStage) {
+	public void customerRegistrationWindow(Stage primaryStage, Connection connection) {
 
 		// close Primary Stage
 		primaryStage.close();
@@ -370,6 +382,7 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
+		Connection connection = new DatabaseConnector(url, user, password).getConnection();
 		AuthorizationManager authorizationManager = new AuthorizationManager(connection);
 
 		// Create Interface Elements
@@ -394,7 +407,7 @@ public class CarSharing extends Application {
 			}
 			else {
 				if (authorizationManager.checkAggregatorAuthorization(login)) {
-					aggregatorActionWindow(secondStage);
+					aggregatorActionWindow(secondStage, connection);
 				}
 				else {
 					JOptionPane.showMessageDialog(
@@ -419,13 +432,16 @@ public class CarSharing extends Application {
 	}
 
 	// Aggregator Window
-	public void aggregatorActionWindow(Stage primaryStage) {
+	public void aggregatorActionWindow(Stage primaryStage, Connection connection) {
 
 		// Close Primary Stage
 		primaryStage.close();
 
 		// Create new Stage
 		Stage secondStage = new Stage();
+
+		// Create local variables and Object
+		PointManager pointManager = new PointManager(connection);
 
 		// Create Interface Elements
 		Button newCarButton = new Button("Add a new car");
@@ -436,8 +452,8 @@ public class CarSharing extends Application {
 		elementSetter.setButton(newPointButton, 250, 50, 25, 100);
 
 		// Set on Action Buttons
-		newCarButton.setOnAction(e -> aggregatorAddCarWindow(secondStage));
-		newPointButton.setOnAction(e -> aggregatorAddPointWindow(secondStage));
+		newCarButton.setOnAction(e -> aggregatorAddCarWindow(connection, pointManager));
+		newPointButton.setOnAction(e -> aggregatorAddPointWindow(connection, pointManager));
 
 		// Create and setting Pane
 		Pane root = new Pane();
@@ -449,13 +465,17 @@ public class CarSharing extends Application {
 		secondStage.setTitle("Aggregator Window");
 		secondStage.setScene(scene);
 		secondStage.show();
+		secondStage.setOnCloseRequest(e -> {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		});
 	}
 
 	// Aggregator Add Car
-	public void aggregatorAddCarWindow(Stage primaryStage) {
-
-		// Close Primary Stage
-		primaryStage.close();
+	public void aggregatorAddCarWindow(Connection connection, PointManager pointManager) {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -520,7 +540,7 @@ public class CarSharing extends Application {
 			}
 		});
 		backButton.setOnAction(e ->{
-			aggregatorActionWindow(primaryStage);
+			//aggregatorActionWindow(primaryStage, connection);
 			secondStage.close();
 		});
 
@@ -546,10 +566,7 @@ public class CarSharing extends Application {
 	}
 
 	//Aggregator Add Point
-	public void aggregatorAddPointWindow(Stage primaryStage) {
-
-		// close Primary Stage
-		primaryStage.close();
+	public void aggregatorAddPointWindow(Connection connection, PointManager pointManager) {
 
 		// Create local variables and Object
 		AggregatorManager aggregatorManager = new AggregatorManager(connection);
@@ -616,10 +633,7 @@ public class CarSharing extends Application {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		backButton.setOnAction(e ->{
-			aggregatorActionWindow(primaryStage);
-			secondStage.close();
-		});
+		backButton.setOnAction(e ->	secondStage.close());
 
 		// Movable point on Image
 		pointManager.setCustomerPoint(mapImgView, customerPoint);
@@ -656,6 +670,13 @@ public class CarSharing extends Application {
 
 	// Main method
 	public static void main(String[] args) {
+		try {
+			url = args[0];
+			user = args[1];
+			password = args[2];
+		} catch (ArrayIndexOutOfBoundsException ex) {
+			ex.printStackTrace();
+		}
 		launch(args);
 	}
 }

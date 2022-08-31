@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Restructuring code&#10;Code was restructured for better object model match.">
+    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="It finally works!&#10;Changed data type for id for all tables.&#10;Method 'getLastValueId' correctly works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/fill.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fill.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/Servicer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/Servicer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/DatabaseConnector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +44,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VKR_Project" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33563218" />
@@ -66,6 +63,7 @@
     <configuration name="CarSharing" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="application.CarSharing" />
       <module name="Carsharing_FX" />
+      <option name="PROGRAM_PARAMETERS" value="jdbc:postgresql://localhost:5432/carshering postgres postgres" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="service.database.*" />
@@ -165,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661866159243</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="It finally works!&#10;Changed data type for id for all tables.&#10;Method 'getLastValueId' correctly works.">
+      <created>1661946958857</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1661946958857</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -188,15 +193,16 @@
     <MESSAGE value="Restructuring&#10;Part of methods of CarSharing class moved in new class.&#10;All backend methods moved in new package." />
     <MESSAGE value="Restructuring database connection&#10;Now application connecting for database 1 time" />
     <MESSAGE value="Restructuring code&#10;Code was restructured for better object model match." />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructuring code&#10;Code was restructured for better object model match." />
+    <MESSAGE value="It finally works!&#10;Changed data type for id for all tables.&#10;Method 'getLastValueId' correctly works." />
+    <option name="LAST_COMMIT_MESSAGE" value="It finally works!&#10;Changed data type for id for all tables.&#10;Method 'getLastValueId' correctly works." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="1" />
+          <line>29</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

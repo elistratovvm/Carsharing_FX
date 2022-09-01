@@ -70,9 +70,9 @@ public class PointManager {
     public String getNearestPointId(String nearestPointAddress) {
 
         try {
-            String query = "SELECT id"
-                    + " FROM public.lease_points "
-                    + "WHERE address = '" + nearestPointAddress + "'";
+            String query = "SELECT id " +
+                    "FROM public.lease_points " +
+                    "WHERE address = '" + nearestPointAddress + "'";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -91,9 +91,9 @@ public class PointManager {
     public String getNearestPointAddress(int pointNumber) {
 
         try {
-            String query = "SELECT address "
-                    + " FROM public.lease_points "
-                    + "WHERE id = '" + pointNumber + "'";
+            String query = "SELECT address " +
+                    "FROM public.lease_points " +
+                    "WHERE id = '" + pointNumber + "'";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -114,8 +114,8 @@ public class PointManager {
 
         ArrayList<String> idList = new ArrayList<>();
         try {
-            String query = "SELECT address"
-                    + " FROM public.lease_points";
+            String query = "SELECT address " +
+                    "FROM public.lease_points";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -137,8 +137,8 @@ public class PointManager {
 
         ArrayList<Integer> coordinateList = new ArrayList<>();
         try {
-            String query = "SELECT x_coordinate, y_coordinate "
-                    + " FROM public.lease_points";
+            String query = "SELECT x_coordinate, y_coordinate " +
+                    "FROM public.lease_points";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);

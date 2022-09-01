@@ -10,8 +10,8 @@ DROP TABLE IF EXISTS public.lease_points CASCADE;
 
 --Create tables and add primary keys
 CREATE TABLE public.aggregators (
-	id    integer	NOT NULL,
-    name  char(20)	NOT NULL
+	id    integer	    NOT NULL,
+    name  varchar(20)   NOT NULL
 ) TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.aggregators
@@ -26,7 +26,7 @@ ALTER TABLE IF EXISTS public.car_lease_point_details
 	ADD CONSTRAINT clp_pk PRIMARY KEY ( car_id, lpt_id );
 
 CREATE TABLE public.car_types (
-    brand_and_model  char(40)       NOT NULL,
+    brand_and_model  varchar(40)    NOT NULL,
     rate_in_hour     numeric(7, 2)  NOT NULL
 ) TABLESPACE pg_default;
 
@@ -34,11 +34,11 @@ ALTER TABLE IF EXISTS public.car_types
 	ADD CONSTRAINT cte_pk PRIMARY KEY ( brand_and_model );
 
 CREATE TABLE public.cars (
-    id                   integer    NOT NULL,
-    license_plate        char(6)    NOT NULL,
-    technical_condition  char(20)   NOT NULL,
-    fuel                 integer    NOT NULL,
-    cte_brand_and_model  char(40)   NOT NULL
+    id                   integer        NOT NULL,
+    license_plate        varchar(6)     NOT NULL,
+    technical_condition  varchar(20)    NOT NULL,
+    fuel                 integer        NOT NULL,
+    cte_brand_and_model  varchar(40)    NOT NULL
 ) TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.cars
@@ -64,8 +64,8 @@ ALTER TABLE IF EXISTS public.contracts
 
 CREATE TABLE public.customers (
     id                  integer     NOT NULL,
-    first_name          char(20)    NOT NULL,
-    last_name           char(20)    NOT NULL,
+    first_name          varchar(20) NOT NULL,
+    last_name           varchar(20) NOT NULL,
     drivers_license     numeric(12) NOT NULL
 ) TABLESPACE pg_default;
 
@@ -74,7 +74,7 @@ ALTER TABLE IF EXISTS public.customers
 
 CREATE TABLE public.lease_points (
     id            integer       NOT NULL,
-    address       char(50)      NOT NULL,
+    address       varchar(50)   NOT NULL,
     x_coordinate  integer       NOT NULL,
     y_coordinate  integer       NOT NULL,
     agr_id        integer       NOT NULL

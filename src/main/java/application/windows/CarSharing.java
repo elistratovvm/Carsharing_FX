@@ -98,7 +98,8 @@ public class CarSharing extends Application {
 
 				// Check Login
 				if (authorizationManager.checkCustomerAuthorization(login)) {
-					customerActionWindow(secondStage, customerManager.getCustomerID(login), connection);
+					String[] customerInfo = customerManager.getCustomerID(login);
+					customerActionWindow(secondStage, customerInfo[0], customerInfo[1], connection);
 				}
 				else {
 					JOptionPane.showMessageDialog(
@@ -128,7 +129,7 @@ public class CarSharing extends Application {
 	}
 
 	// Customer Action Window
-	public void customerActionWindow(Stage primaryStage, String login, Connection connection) {
+	public void customerActionWindow(Stage primaryStage, String login, String Name, Connection connection) {
 
 		// Close Primary Stage
 		primaryStage.close();
@@ -190,7 +191,7 @@ public class CarSharing extends Application {
 		// Create and setting window
 		Scene scene = new Scene(root, 500, 550);
 		secondStage.initModality(Modality.APPLICATION_MODAL);
-		secondStage.setTitle("Customer Window");
+		secondStage.setTitle(Name);
 		secondStage.setScene(scene);
 		secondStage.show();
 		secondStage.setOnCloseRequest(e -> {

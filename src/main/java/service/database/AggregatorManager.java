@@ -19,10 +19,10 @@ public class AggregatorManager {
 
 		try {
 			String lastIdCar = servicer.getLastValueId("SELECT id FROM public.cars");
-			String query1 = "INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model) "
-					+ "VALUES (" + lastIdCar + ", '" + plate + "', 'Отличное', 100, '" + car + "');";
-			String query2 = "INSERT INTO public.car_lease_point_details (car_id, lpt_id)"
-					+ "VALUES (" + lastIdCar + ", '" + new PointManager(connection).getPointIDFromAddress(point) + "')";
+			String query1 = "INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model) " +
+					"VALUES (" + lastIdCar + ", '" + plate + "', 'Отличное', 100, '" + car + "');";
+			String query2 = "INSERT INTO public.car_lease_point_details (car_id, lpt_id)" +
+					"VALUES (" + lastIdCar + ", '" + new PointManager(connection).getPointIDFromAddress(point) + "')";
 
 			Statement statement1 = connection.createStatement();
 			Statement statement2 = connection.createStatement();
@@ -42,8 +42,8 @@ public class AggregatorManager {
 
 		try {
 			String lastIdPoint = servicer.getLastValueId("SELECT id FROM public.lease_points");
-			String query = "INSERT INTO public.lease_points (id, address, x_coordinate, y_coordinate, agr_id) "
-					+ "VALUES (" + lastIdPoint + ", '" + address + "', " + x + ", " + y + ", 1)";
+			String query = "INSERT INTO public.lease_points (id, address, x_coordinate, y_coordinate, agr_id) " +
+					"VALUES (" + lastIdPoint + ", '" + address + "', " + x + ", " + y + ", 1)";
 
 			Statement statement = connection.createStatement();
 

@@ -16,9 +16,9 @@ public class AuthorizationManager {
     public boolean checkAggregatorAuthorization(String login) {
 
         try {
-            String query = "SELECT id "
-                    + "FROM public.aggregators "
-                    + "WHERE id = '" + login + "'";
+            String query = "SELECT id " +
+                    "FROM public.aggregators " +
+                    "WHERE id = '" + login + "'";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -35,9 +35,9 @@ public class AuthorizationManager {
     public boolean checkCustomerAuthorization(String login) {
 
         try {
-            String query = "SELECT drivers_license "
-                    + "FROM public.customers "
-                    + "WHERE drivers_license = '" + login + "'";
+            String query = "SELECT drivers_license " +
+                    "FROM public.customers " +
+                    "WHERE drivers_license = '" + login + "'";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -55,8 +55,8 @@ public class AuthorizationManager {
 
         try {
             String lastIdCustomer = new Servicer(connection).getLastValueId("SELECT id FROM public.customers");
-            String query = "INSERT INTO public.customers (id, first_name, last_name, drivers_license) "
-                    + "VALUES ('" + lastIdCustomer + "', '" + firstName + "', '" + lastName + "', '" + license + "')";
+            String query = "INSERT INTO public.customers (id, first_name, last_name, drivers_license) " +
+                    "VALUES ('" + lastIdCustomer + "', '" + firstName + "', '" + lastName + "', '" + license + "')";
 
             Statement statement = connection.createStatement();
 

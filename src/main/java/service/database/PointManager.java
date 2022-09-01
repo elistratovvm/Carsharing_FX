@@ -48,7 +48,7 @@ public class PointManager {
 
         try {
             String query = "SELECT id " +
-                    "FROM lease_points " +
+                    "FROM public.lease_points " +
                     "WHERE address = '" + point + "'";
 
             Statement statement = connection.createStatement();
@@ -70,8 +70,8 @@ public class PointManager {
     public String getNearestPointId(String nearestPointAddress) {
 
         try {
-            String query = "SELECT id address "
-                    + " FROM lease_points "
+            String query = "SELECT id"
+                    + " FROM public.lease_points "
                     + "WHERE address = '" + nearestPointAddress + "'";
 
             Statement statement = connection.createStatement();
@@ -92,8 +92,7 @@ public class PointManager {
 
         try {
             String query = "SELECT address "
-                    + " FROM lease_points "
-                    //+ "WHERE id = '" + getPointIDFromNumber(pointNumber)+ "'";
+                    + " FROM public.lease_points "
                     + "WHERE id = '" + pointNumber + "'";
 
             Statement statement = connection.createStatement();
@@ -116,7 +115,7 @@ public class PointManager {
         ArrayList<String> idList = new ArrayList<>();
         try {
             String query = "SELECT address"
-                    + " FROM lease_points";
+                    + " FROM public.lease_points";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -139,7 +138,7 @@ public class PointManager {
         ArrayList<Integer> coordinateList = new ArrayList<>();
         try {
             String query = "SELECT x_coordinate, y_coordinate "
-                    + " FROM lease_points";
+                    + " FROM public.lease_points";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);

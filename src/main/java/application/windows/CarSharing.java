@@ -1,4 +1,4 @@
-package application;
+package application.windows;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -170,7 +170,6 @@ public class CarSharing extends Application {
 						JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();
 			}
-			
 		});
 		exitButton.setOnAction(e -> {
 			customerAuthorizationWindow();

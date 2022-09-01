@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="It finally works!&#10;Changed data type for id for all tables.&#10;Method 'getLastValueId' correctly works.">
+    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Increasing level of security&#10;Database url, user, password are now program arguments">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carsharing_FX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Carsharing_FX.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/windows/CarSharing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/DatabaseConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/CarGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/CarGetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,11 +34,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/application/CarSharing.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/module-info.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/application/windows/CarSharing.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/module-info.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -41,14 +49,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VKR_Project" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.33563218" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/vital/IdeaProjects/Carsharing_FX",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vital\IdeaProjects\Carsharing_FX\src\main\resources" />
@@ -61,7 +76,7 @@
   </component>
   <component name="RunManager" selected="Application.CarSharing">
     <configuration name="CarSharing" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="application.CarSharing" />
+      <option name="MAIN_CLASS_NAME" value="application.windows.CarSharing" />
       <module name="Carsharing_FX" />
       <option name="PROGRAM_PARAMETERS" value="jdbc:postgresql://localhost:5432/carshering postgres postgres" />
       <extension name="coverage">
@@ -106,6 +121,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661158793019</updated>
+      <workItem from="1662034444441" duration="2567000" />
     </task>
     <task id="LOCAL-00001" summary="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability.">
       <created>1661267181692</created>
@@ -170,8 +186,18 @@
       <option name="project" value="LOCAL" />
       <updated>1661946958857</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Increasing level of security&#10;Database url, user, password are now program arguments">
+      <created>1661953207995</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1661953207995</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -194,17 +220,11 @@
     <MESSAGE value="Restructuring database connection&#10;Now application connecting for database 1 time" />
     <MESSAGE value="Restructuring code&#10;Code was restructured for better object model match." />
     <MESSAGE value="It finally works!&#10;Changed data type for id for all tables.&#10;Method 'getLastValueId' correctly works." />
-    <option name="LAST_COMMIT_MESSAGE" value="It finally works!&#10;Changed data type for id for all tables.&#10;Method 'getLastValueId' correctly works." />
+    <MESSAGE value="Increasing level of security&#10;Database url, user, password are now program arguments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Increasing level of security&#10;Database url, user, password are now program arguments" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

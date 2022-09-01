@@ -22,7 +22,7 @@ public class CustomerManager {
 
 		try {
 			String query = "SELECT id"
-					+ " FROM customers "
+					+ " FROM public.customers "
 					+ "WHERE drivers_license = '" + customerPlate + "'";
 
 			Statement statement = connection.createStatement();
@@ -43,9 +43,9 @@ public class CustomerManager {
 
 		try {
 			String lastIdContract = servicer.getLastValueId("SELECT id FROM contracts");
-			String ctrQuery = "INSERT INTO contracts (id, agr_id, ctr_id) "
+			String ctrQuery = "INSERT INTO public.contracts (id, agr_id, ctr_id) "
 					+ "VALUES (" + lastIdContract + ", 1, " + login + ")";
-			String cttQuery = "INSERT INTO contract_details (ctt_id, car_id, contract_date) "
+			String cttQuery = "INSERT INTO public.contract_details (ctt_id, car_id, contract_date) "
 					+ "VALUES (" + lastIdContract + ", " + new CarGetter(connection).getCarIdFromPlate(plate)
 					+ ", CURRENT_DATE)";
 

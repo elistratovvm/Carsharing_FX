@@ -7,9 +7,8 @@ module com.example.carsharing_fx {
     requires java.naming;
     requires org.postgresql.jdbc;
 
-
-    opens application to javafx.fxml;
-    exports application;
+    exports application.windows;
+    opens application.windows to javafx.fxml;
     exports service.database;
     opens service.database to javafx.fxml;
 }

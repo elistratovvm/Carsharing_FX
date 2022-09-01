@@ -17,7 +17,7 @@ public class CarGetter {
     public String getCarIdFromPlate(String plate) {
 
         try {
-            String query = "SELECT id FROM cars WHERE license_plate = '" + plate + "'";
+            String query = "SELECT id FROM public.cars WHERE license_plate = '" + plate + "'";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -38,7 +38,7 @@ public class CarGetter {
         ArrayList<String> idList = new ArrayList<>();
         try {
             String query = "SELECT brand_and_model"
-                    + " FROM car_types";
+                    + " FROM public.car_types";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -62,13 +62,13 @@ public class CarGetter {
         try {
             String query = "SELECT c.license_plate, c.cte_brand_and_model, "
                     + "c.technical_condition, c.fuel, ct.rate_in_hour "
-                    + "FROM cars c JOIN car_lease_point_details d "
+                    + "FROM public.cars c JOIN car_lease_point_details d "
                     + "ON (c.id = d.car_id) "
-                    + "JOIN car_types ct "
+                    + "JOIN public.car_types ct "
                     + "ON (c.cte_brand_and_model = ct.brand_and_model) "
                     + "WHERE ((d.lpt_id = '" + new PointManager(connection).getNearestPointId(nearestPointAddress) + "') "
                     + "AND (c.id NOT IN(SELECT car_id "
-                    + "FROM contract_details "
+                    + "FROM public.contract_details "
                     + "WHERE contract_date != CURRENT_DATE)))";
 
             Statement statement = connection.createStatement();

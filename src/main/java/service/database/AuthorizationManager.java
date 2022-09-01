@@ -17,7 +17,7 @@ public class AuthorizationManager {
 
         try {
             String query = "SELECT id "
-                    + "FROM aggregators "
+                    + "FROM public.aggregators "
                     + "WHERE id = '" + login + "'";
 
             Statement statement = connection.createStatement();
@@ -36,7 +36,7 @@ public class AuthorizationManager {
 
         try {
             String query = "SELECT drivers_license "
-                    + "FROM customers "
+                    + "FROM public.customers "
                     + "WHERE drivers_license = '" + login + "'";
 
             Statement statement = connection.createStatement();
@@ -54,8 +54,8 @@ public class AuthorizationManager {
     public void createCustomer(String firstName, String lastName, String license) {
 
         try {
-            String lastIdCustomer = new Servicer(connection).getLastValueId("SELECT id FROM customers");
-            String query = "INSERT INTO customers (id, first_name, last_name, drivers_license) "
+            String lastIdCustomer = new Servicer(connection).getLastValueId("SELECT id FROM public.customers");
+            String query = "INSERT INTO public.customers (id, first_name, last_name, drivers_license) "
                     + "VALUES ('" + lastIdCustomer + "', '" + firstName + "', '" + lastName + "', '" + license + "')";
 
             Statement statement = connection.createStatement();

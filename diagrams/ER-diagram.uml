@@ -3,40 +3,52 @@
   <ID>DATABASE</ID>
   <OriginalElement>63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.aggregators</OriginalElement>
   <nodes>
-    <node x="216.5" y="215.5">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.car_lease_point_details</node>
-    <node x="-184.5" y="-122.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.customers</node>
-    <node x="-332.0" y="182.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.lease_points</node>
-    <node x="217.0" y="-100.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.car_types</node>
-    <node x="9.5" y="41.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.contract_details</node>
-    <node x="-322.5" y="52.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.aggregators</node>
-    <node x="-146.5" y="41.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.contracts</node>
-    <node x="205.5" y="19.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.cars</node>
+    <node x="777.0" y="68.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.lease_points</node>
+    <node x="292.0" y="-84.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.contract_details</node>
+    <node x="488.0" y="-117.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.cars</node>
+    <node x="98.0" y="-258.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.customers</node>
+    <node x="136.0" y="-84.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.contracts</node>
+    <node x="126.0" y="101.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.aggregators</node>
+    <node x="418.5" y="101.0">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.car_types</node>
+    <node x="753.0" y="-72.5">63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.car_lease_point_details</node>
   </nodes>
   <notes />
   <edges>
     <edge source="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.lease_points" target="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.aggregators" relationship="REFERENCES">
-      <point x="0.0" y="-71.5" />
+      <point x="0.0" y="71.5" />
+      <point x="849.5" y="221.0" />
+      <point x="189.0" y="221.0" />
       <point x="0.0" y="38.5" />
     </edge>
     <edge source="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.cars" target="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.car_types" relationship="REFERENCES">
-      <point x="0.0" y="-71.5" />
-      <point x="0.0" y="38.5" />
+      <point x="52.90822559999992" y="81.38939519999995" />
+      <point x="648.4082255999999" y="77.43601280000001" />
+      <point x="514.5" y="77.43601280000001" />
+      <point x="0.0" y="-38.5" />
     </edge>
     <edge source="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.car_lease_point_details" target="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.cars" relationship="REFERENCES">
-      <point x="0.0" y="-38.0" />
-      <point x="0.0" y="71.5" />
+      <point x="-96.5" y="-0.0" />
+      <point x="107.5" y="-0.0" />
     </edge>
     <edge source="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.contracts" target="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.aggregators" relationship="REFERENCES">
-      <point x="-53.0" y="-0.0" />
-      <point x="63.0" y="-0.0" />
+      <point x="0.0" y="49.5" />
+      <point x="0.0" y="-38.5" />
     </edge>
     <edge source="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.car_lease_point_details" target="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.lease_points" relationship="REFERENCES">
-      <point x="-96.5" y="-0.0" />
-      <point x="72.5" y="-0.0" />
+      <point x="0.0" y="38.0" />
+      <point x="0.0" y="-71.5" />
     </edge>
     <edge source="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.contracts" target="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.customers" relationship="REFERENCES">
       <point x="0.0" y="-49.5" />
       <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.cars" target="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.aggregators" relationship="REFERENCES">
+      <point x="53.75" y="82.5" />
+      <point x="649.25" y="9.33104000000003" />
+      <point x="541.75" y="9.33104000000003" />
+      <point x="541.75" y="67.0" />
+      <point x="213.99999999999977" y="67.0" />
+      <point x="24.999999999999773" y="-31.34532480000007" />
     </edge>
     <edge source="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.contract_details" target="63adbc06-5285-4a01-83c2-9c4f4420e04b.TABLE:carshering.public.contracts" relationship="REFERENCES">
       <point x="-73.0" y="-0.0" />
@@ -47,7 +59,7 @@
       <point x="-107.5" y="-0.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.5" showDependencies="false" x="54.5" y="111.5" />
+  <settings layout="Hierarchic" zoom="1.0000000000000007" showDependencies="false" x="581.0" y="4.0" />
   <SelectedNodes />
   <Categories>
     <Category>Columns</Category>

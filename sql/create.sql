@@ -34,11 +34,12 @@ ALTER TABLE IF EXISTS public.car_types
 	ADD CONSTRAINT cte_pk PRIMARY KEY ( brand_and_model );
 
 CREATE TABLE public.cars (
-    id                   integer        NOT NULL,
-    license_plate        varchar(6)     NOT NULL,
-    technical_condition  varchar(20)    NOT NULL,
-    fuel                 integer        NOT NULL,
-    cte_brand_and_model  varchar(40)    NOT NULL
+    id                  integer     NOT NULL,
+    license_plate       varchar(6)  NOT NULL,
+    technical_condition varchar(20) NOT NULL,
+    fuel                integer     NOT NULL,
+    cte_brand_and_model varchar(40) NOT NULL,
+    agr_id              integer     NOT NULL
 ) TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.cars
@@ -87,6 +88,10 @@ ALTER TABLE IF EXISTS public.lease_points
 ALTER TABLE IF EXISTS public.cars
     ADD CONSTRAINT car_cte_fk FOREIGN KEY ( cte_brand_and_model )
         REFERENCES public.car_types ( brand_and_model );
+
+ALTER TABLE IF EXISTS public.cars
+    ADD CONSTRAINT car_agr_fk FOREIGN KEY ( agr_id )
+        REFERENCES public.aggregators ( id );
 
 ALTER TABLE IF EXISTS public.contract_details
     ADD CONSTRAINT cdl_car_fk FOREIGN KEY ( car_id )

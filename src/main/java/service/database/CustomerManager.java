@@ -6,19 +6,25 @@ import java.sql.Statement;
 
 public class CustomerManager {
 
-	Connection connection;
-	Servicer servicer;
-	PointManager pointManager;
+	private final Connection connection;
+	private final Servicer servicer;
 
-	public CustomerManager(Connection connection) {
+	private String customerID;
+	private String customerName;
+
+
+	public CustomerManager(Connection connection, String customerPlate) {
 
 		this.connection = connection;
 		this.servicer = new Servicer(connection);
-		this.pointManager = new PointManager(connection);
+
+		String[] customerInfo = getCustomerInfo(customerPlate);
+		this.setCustomerID(customerInfo[0]);
+		this.setCustomerName(customerInfo[1]);
 	}
 
-	// Get Customer ID
-	public String[] getCustomerID(String customerPlate) {
+	// Get Customer info
+	public String[] getCustomerInfo(String customerPlate) {
 
 		try {
 			String query = "SELECT id, first_name, last_name " +
@@ -63,5 +69,21 @@ public class CustomerManager {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public String getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 }

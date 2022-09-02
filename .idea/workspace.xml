@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Created ER-diagram">
+    <list default="true" id="d8e0ad4b-0db8-4dc3-9e0b-4c02c121aef6" name="Changes" comment="Now when user logs in and go to the window map, in title shows his name.&#10;Change data type in database (char -&gt; varchar)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/ER-diagram.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/ER-diagram.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/ER-diagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/ER-diagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/ER-diagram.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/ER-diagram.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/fill.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fill.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/windows/CarSharing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/windows/CarSharing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AggregatorManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/AuthorizationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/CarGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/CarGetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/CustomerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/database/PointManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +118,9 @@
       <option name="presentableId" value="Default" />
       <updated>1661158793019</updated>
       <workItem from="1662034444441" duration="2937000" />
-      <workItem from="1662061249794" duration="1802000" />
+      <workItem from="1662061249794" duration="2295000" />
+      <workItem from="1662111213571" duration="1517000" />
+      <workItem from="1662127763784" duration="1798000" />
     </task>
     <task id="LOCAL-00001" summary="Deleted demo files;&#10;Added sql-scripts for creating and populate(?) database;&#10;&#10;CarSharing class code was changed:&#10;-variables name replaced with more understandable and readable,&#10;-code layout changed for better readability.">
       <created>1661267181692</created>
@@ -197,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662038216952</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Now when user logs in and go to the window map, in title shows his name">
+      <created>1662063517568</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662063517568</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +235,8 @@
     <MESSAGE value="It finally works!&#10;Changed data type for id for all tables.&#10;Method 'getLastValueId' correctly works." />
     <MESSAGE value="Increasing level of security&#10;Database url, user, password are now program arguments" />
     <MESSAGE value="Created ER-diagram" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created ER-diagram" />
+    <MESSAGE value="Now when user logs in and go to the window map, in title shows his name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now when user logs in and go to the window map, in title shows his name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

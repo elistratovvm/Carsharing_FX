@@ -40,8 +40,8 @@ public class CarSharing extends Application {
 		Button enterAsAggregatorButton = new Button("Enter as aggregator");
 
 		// Buttons size and settings
-		elementSetter.setButton(enterAsCustomerButton, 250, 50, 25, 25);
-		elementSetter.setButton(enterAsAggregatorButton, 250, 50, 25, 100);
+		elementSetter.setButton(enterAsCustomerButton,		250, 50, 25, 25);
+		elementSetter.setButton(enterAsAggregatorButton,	250, 50, 25, 100);
 
 		// Set on Action Buttons
 		enterAsCustomerButton.setOnAction(e -> customerAuthorizationWindow());
@@ -68,7 +68,7 @@ public class CarSharing extends Application {
 		// Create local variables and Object
 		Connection connection = new DatabaseConnector(url, user, password).getConnection();
 		AuthorizationManager authorizationManager = new AuthorizationManager(connection);
-		CustomerManager customerManager = new CustomerManager(connection);
+
 
 		// Create Interface Elements
 		TextField loginTextField = new TextField();
@@ -77,10 +77,10 @@ public class CarSharing extends Application {
 		Button registrationButton = new Button("Registration");
 
 		// Interface Elements sizes and settings
-		elementSetter.setTextField(loginTextField, 200, 25, 75, 25);
-		elementSetter.setTextLabel(loginText, 20, 30);
-		elementSetter.setButton(enterButton, 100, 25, 175, 75);
-		elementSetter.setButton(registrationButton, 100, 25, 50, 75);
+		elementSetter.setTextField(	loginTextField,		200, 25, 75,  25);
+		elementSetter.setTextLabel(	loginText,								20,  30);
+		elementSetter.setButton(	enterButton,		100, 25, 175, 75);
+		elementSetter.setButton(	registrationButton,	100, 25, 50,  75);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
@@ -93,15 +93,13 @@ public class CarSharing extends Application {
 						"Please, enter login",
 						"Error",
 						JOptionPane.ERROR_MESSAGE);
-			}
-			else {
+			} else {
 
 				// Check Login
 				if (authorizationManager.checkCustomerAuthorization(login)) {
-					String[] customerInfo = customerManager.getCustomerID(login);
-					customerActionWindow(secondStage, customerInfo[0], customerInfo[1], connection);
-				}
-				else {
+					CustomerManager customerManager = new CustomerManager(connection, login);
+					customerActionWindow(secondStage, customerManager, connection);
+				} else {
 					JOptionPane.showMessageDialog(
 							null,
 							"Incorrect login, please try again",
@@ -129,7 +127,7 @@ public class CarSharing extends Application {
 	}
 
 	// Customer Action Window
-	public void customerActionWindow(Stage primaryStage, String login, String Name, Connection connection) {
+	public void customerActionWindow(Stage primaryStage, CustomerManager customerManager, Connection connection) {
 
 		// Close Primary Stage
 		primaryStage.close();
@@ -149,9 +147,9 @@ public class CarSharing extends Application {
 		Button exitButton = new Button("Exit");
 
 		// Interface Elements sizes and settings
-		elementSetter.setImageView(mapImgView, 25, 25);
-		elementSetter.setButton(enterButton, 175, 25, 100, 500);
-		elementSetter.setButton(exitButton, 100, 25, 300, 500);
+		elementSetter.setImageView(	mapImgView,							25, 25);
+		elementSetter.setButton(	enterButton,	175, 25, 100, 500);
+		elementSetter.setButton(	exitButton,		100, 25, 300, 500);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
@@ -159,11 +157,10 @@ public class CarSharing extends Application {
 				customerCreateContractWindow(
 						(customerPoint.getCenterX() - 25) + "",
 						(customerPoint.getCenterY() - 25) + "",
-						login,
+						customerManager,
 						connection,
 						pointManager);
-			}
-			catch (IndexOutOfBoundsException ex) {
+			} catch (IndexOutOfBoundsException ex) {
 				JOptionPane.showMessageDialog(
 						null,
 						"This point has no car today",
@@ -191,7 +188,7 @@ public class CarSharing extends Application {
 		// Create and setting window
 		Scene scene = new Scene(root, 500, 550);
 		secondStage.initModality(Modality.APPLICATION_MODAL);
-		secondStage.setTitle(Name);
+		secondStage.setTitle(customerManager.getCustomerName());
 		secondStage.setScene(scene);
 		secondStage.show();
 		secondStage.setOnCloseRequest(e -> {
@@ -207,7 +204,7 @@ public class CarSharing extends Application {
 	public void customerCreateContractWindow(
 			String x,
 			String y,
-			String login,
+			CustomerManager customerManager,
 			Connection connection,
 			PointManager pointManager) {
 
@@ -215,13 +212,13 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		CustomerManager customerManager = new CustomerManager(connection);
 		CarGetter carGetter = new CarGetter(connection);
 		ArrayList<Integer> pointCoordinates = new ArrayList<>(pointManager.getPointCoordinateList());
 		String nearestPointAddress = pointManager.calculateNearestPoint(x, y, pointCoordinates);
 
 		// Create Interface Elements
-		ObservableList<String> listCar = FXCollections.observableArrayList(carGetter.getCarOnPointList(nearestPointAddress));
+		ObservableList<String> listCar = FXCollections.observableArrayList(
+				carGetter.getCarOnPointList(nearestPointAddress));
 		ComboBox<String> carBox = new ComboBox<>(listCar);
 		Label carText = new Label("Choose a car");
 		Label pointText = new Label("Nearest point: " + nearestPointAddress);
@@ -229,16 +226,16 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		elementSetter.setComboBox(carBox, 250, 25, 125, 75);
-		elementSetter.setTextLabel(carText, 25, 80);
-		elementSetter.setTextLabel(pointText, 100, 30);
-		elementSetter.setButton(createContractButton, 150, 25, 125, 125);
-		elementSetter.setButton(backButton, 75, 25, 300, 125);
+		elementSetter.setComboBox(	carBox,					250, 25, 125, 75);
+		elementSetter.setTextLabel(	carText,									25,  80);
+		elementSetter.setTextLabel(	pointText,									100, 30);
+		elementSetter.setButton(	createContractButton,	150, 25, 125, 125);
+		elementSetter.setButton(	backButton,				75, 25,  300, 125);
 
 		// Set on Action Buttons
 		createContractButton.setOnAction(e -> {
 			try {
-				customerManager.createContract(carBox.getValue().substring(7, 13), login);
+				customerManager.createContract(carBox.getValue().substring(7, 13), customerManager.getCustomerID());
 				JOptionPane.showMessageDialog(
 						null,
 						"Contract Created!",
@@ -296,14 +293,14 @@ public class CarSharing extends Application {
 		Button exitButton = new Button("Exit");
 
 		// Interface Elements sizes and settings
-		elementSetter.setTextField(firstNameTextField, 200, 25, 125, 25);
-		elementSetter.setTextField(lastNameTextField, 200, 25, 125, 75);
-		elementSetter.setTextField(licenseTextField, 200, 25, 125, 125);
-		elementSetter.setTextLabel(firstNameText, 20, 30);
-		elementSetter.setTextLabel(lastNameText, 20, 80);
-		elementSetter.setTextLabel(licenseText, 20, 130);
-		elementSetter.setButton(registrationButton, 150, 25, 50, 175);
-		elementSetter.setButton(exitButton, 100, 25, 225, 175);
+		elementSetter.setTextField(	firstNameTextField,	200, 25, 125, 25);
+		elementSetter.setTextField(	lastNameTextField,	200, 25, 125, 75);
+		elementSetter.setTextField(	licenseTextField,	200, 25, 125, 125);
+		elementSetter.setTextLabel(	firstNameText, 							20,  30);
+		elementSetter.setTextLabel(	lastNameText, 							20,  80);
+		elementSetter.setTextLabel(	licenseText, 							20,  130);
+		elementSetter.setButton(	registrationButton,	150, 25, 50,  175);
+		elementSetter.setButton(	exitButton,			100, 25, 225, 175);
 
 		// Set on Action Buttons
 		registrationButton.setOnAction(e -> {
@@ -311,28 +308,29 @@ public class CarSharing extends Application {
 			String lastName = lastNameTextField.getText();
 			String license = licenseTextField.getText();
 			if (firstName.equals("") || lastName.equals("") || license.equals("")) {
+
 				JOptionPane.showMessageDialog(
 						null,
 						"Please, fill in all the fields",
 						"Error",
 						JOptionPane.ERROR_MESSAGE);
-			}
-			else if(isNotNumeric(license) || (license.length() > 12)) {
+			} else if(isNotNumeric(license) || (license.length() > 12)) {
+
 				JOptionPane.showMessageDialog(
 						null,
 						"Please, enter correct value in the license fields",
 						"Error",
 						JOptionPane.ERROR_MESSAGE);
-			}
-			else if((firstName.length() > 10) || (lastName.length() > 10)) {
+			} else if((firstName.length() > 10) || (lastName.length() > 10)) {
+
 				JOptionPane.showMessageDialog(
 						null,
 						"Please, enter correct value in the name fields (max length - 10)",
 						"Error",
 						JOptionPane.ERROR_MESSAGE);
-			}
-			else {
+			} else {
 				try {
+
 					authorizationManager.createCustomer(firstName, lastName, license);
 					JOptionPane.showMessageDialog(
 							null,
@@ -391,25 +389,26 @@ public class CarSharing extends Application {
 		Button enterButton = new Button("Enter");
 
 		// Interface Elements sizes and settings
-		elementSetter.setTextField(loginTextField, 200, 25, 75, 25);
-		elementSetter.setTextLabel(loginText, 25, 30);
-		elementSetter.setButton(enterButton, 100, 25, 175, 75);
+		elementSetter.setTextField(	loginTextField,	200, 25, 75,  25);
+		elementSetter.setTextLabel(	loginText, 							25,  30);
+		elementSetter.setButton(	enterButton,	100, 25, 175, 75);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
 			String login = loginTextField.getText();
 			if (login.equals("")) {
+
 				JOptionPane.showMessageDialog(
 						null,
 						"Please, enter login",
 						"Error",
 						JOptionPane.ERROR_MESSAGE);
-			}
-			else {
+			} else {
 				if (authorizationManager.checkAggregatorAuthorization(login)) {
-					aggregatorActionWindow(secondStage, connection);
-				}
-				else {
+
+					aggregatorActionWindow(secondStage, connection, login);
+				} else {
+
 					JOptionPane.showMessageDialog(
 							null,
 							"Incorrect login, please try again",
@@ -432,7 +431,7 @@ public class CarSharing extends Application {
 	}
 
 	// Aggregator Window
-	public void aggregatorActionWindow(Stage primaryStage, Connection connection) {
+	public void aggregatorActionWindow(Stage primaryStage, Connection connection, String login) {
 
 		// Close Primary Stage
 		primaryStage.close();
@@ -441,6 +440,7 @@ public class CarSharing extends Application {
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
+		AggregatorManager aggregatorManager = new AggregatorManager(connection, login);
 		PointManager pointManager = new PointManager(connection);
 
 		// Create Interface Elements
@@ -448,12 +448,12 @@ public class CarSharing extends Application {
 		Button newPointButton = new Button("Add a lease point");
 
 		// Interface Elements sizes and settings
-		elementSetter.setButton(newCarButton, 250, 50, 25, 25);
-		elementSetter.setButton(newPointButton, 250, 50, 25, 100);
+		elementSetter.setButton(newCarButton,	250, 50, 25, 25);
+		elementSetter.setButton(newPointButton,	250, 50, 25, 100);
 
 		// Set on Action Buttons
-		newCarButton.setOnAction(e -> aggregatorAddCarWindow(connection, pointManager));
-		newPointButton.setOnAction(e -> aggregatorAddPointWindow(connection, pointManager));
+		newCarButton.setOnAction(e -> aggregatorAddCarWindow(connection, aggregatorManager, pointManager));
+		newPointButton.setOnAction(e -> aggregatorAddPointWindow(aggregatorManager, pointManager));
 
 		// Create and setting Pane
 		Pane root = new Pane();
@@ -475,13 +475,15 @@ public class CarSharing extends Application {
 	}
 
 	// Aggregator Add Car
-	public void aggregatorAddCarWindow(Connection connection, PointManager pointManager) {
+	public void aggregatorAddCarWindow(
+			Connection connection,
+			AggregatorManager aggregatorManager,
+			PointManager pointManager) {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
 
 		// Create local variables and Object
-		AggregatorManager aggregatorManager = new AggregatorManager(connection);
 		CarGetter carGetter = new CarGetter(connection);
 
 		// Create Interface Elements
@@ -498,27 +500,28 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		elementSetter.setComboBox(pointBox, 250, 25, 125, 25);
-		elementSetter.setComboBox(carBox, 250, 25, 125, 75);
-		elementSetter.setTextField(carPlateTextField, 150, 25, 150, 125);
-		elementSetter.setTextLabel(pointText, 25, 30);
-		elementSetter.setTextLabel(modelText, 25, 80);
-		elementSetter.setTextLabel(plateText, 25, 130);
-		elementSetter.setButton(addCarButton, 175, 25, 75, 175);
-		elementSetter.setButton(backButton, 100, 25, 275, 175);
+		elementSetter.setComboBox(	pointBox,			250, 25, 125, 25);
+		elementSetter.setComboBox(	carBox,				250, 25, 125, 75);
+		elementSetter.setTextField(	carPlateTextField,	150, 25, 150, 125);
+		elementSetter.setTextLabel(	pointText, 								25,  30);
+		elementSetter.setTextLabel(	modelText, 								25,  80);
+		elementSetter.setTextLabel(	plateText, 								25,  130);
+		elementSetter.setButton(	addCarButton,		175, 25, 75,  175);
+		elementSetter.setButton(	backButton,			100, 25, 275, 175);
 
 		// Set on Action Buttons
 		addCarButton.setOnAction(e -> {
 			String plate = carPlateTextField.getText();
 			if ("".equals(plate) || (plate.length() != 6)) {
+
 				JOptionPane.showMessageDialog(
 						null,
 						"Please, fill correct value in the license plate",
 						"Error",
 						JOptionPane.ERROR_MESSAGE);
-			}
-			else {
+			} else {
 				try {
+
 					aggregatorManager.addCar(pointBox.getValue(), carBox.getValue(), plate);
 					JOptionPane.showMessageDialog(
 							null,
@@ -539,10 +542,7 @@ public class CarSharing extends Application {
 				}
 			}
 		});
-		backButton.setOnAction(e ->{
-			//aggregatorActionWindow(primaryStage, connection);
-			secondStage.close();
-		});
+		backButton.setOnAction(e -> secondStage.close());
 
 		// Create and setting Pane
 		Pane root = new Pane();
@@ -566,10 +566,7 @@ public class CarSharing extends Application {
 	}
 
 	//Aggregator Add Point
-	public void aggregatorAddPointWindow(Connection connection, PointManager pointManager) {
-
-		// Create local variables and Object
-		AggregatorManager aggregatorManager = new AggregatorManager(connection);
+	public void aggregatorAddPointWindow(AggregatorManager aggregatorManager, PointManager pointManager) {
 
 		// Create new Stage
 		Stage secondStage = new Stage();
@@ -585,11 +582,11 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		elementSetter.setImageView(mapImgView, 25, 25);
-		elementSetter.setTextField(addressTextField, 175, 25, 125, 500);
-		elementSetter.setTextLabel(addressText, 25, 505);
-		elementSetter.setButton(addPointButton, 150, 25, 25, 550);
-		elementSetter.setButton(backButton, 100, 25, 200, 550);
+		elementSetter.setImageView(	mapImgView, 							25,  25);
+		elementSetter.setTextField(	addressTextField,	175, 25, 125, 500);
+		elementSetter.setTextLabel(	addressText, 							25,  505);
+		elementSetter.setButton(	addPointButton,		150, 25, 25,  550);
+		elementSetter.setButton(	backButton, 		100, 25, 200, 550);
 
 		// Set on Action Buttons
 		addPointButton.setOnAction(e ->{

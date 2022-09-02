@@ -39,35 +39,35 @@ INSERT INTO public.lease_points (id, address, x_coordinate, y_coordinate, agr_id
     VALUES (3, '3-й Адрес', 335, 375, 1);
 
 --cars
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (1, 'AUTO01', 'Отличное', 100, 'Skoda Rapid');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (1, 'AUTO01', 'Отличное', 100, 'Skoda Rapid', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (2, 'AUTO02', 'Хорошее', 90, 'Skoda Rapid');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (2, 'AUTO02', 'Хорошее', 90, 'Skoda Rapid', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (3, 'AUTO03', 'Хорошее', 75, 'Skoda Rapid');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (3, 'AUTO03', 'Хорошее', 75, 'Skoda Rapid', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (4, 'AUTO04', 'Отличное', 50, 'Volkswagen Polo');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (4, 'AUTO04', 'Отличное', 50, 'Volkswagen Polo', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (5, 'AUTO05', 'Хорошее', 65, 'Volkswagen Polo');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (5, 'AUTO05', 'Хорошее', 65, 'Volkswagen Polo', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (6, 'AUTO06', 'Хорошее', 40, 'Renault Kaptur');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (6, 'AUTO06', 'Хорошее', 40, 'Renault Kaptur', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (7, 'AUTO07', 'Хорошее', 60, 'Renault Kaptur');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (7, 'AUTO07', 'Хорошее', 60, 'Renault Kaptur', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (8, 'AUTO08', 'Отличное', 95, 'Audi A3');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (8, 'AUTO08', 'Отличное', 95, 'Audi A3', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (9, 'AUTO09', 'Отличное', 100, 'BMW 520i');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (9, 'AUTO09', 'Отличное', 100, 'BMW 520i', 1);
 
-INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model)
-    VALUES (10, 'AUTO10', 'Отличное', 85, 'Volvo C180');
+INSERT INTO public.cars (id, license_plate, technical_condition, fuel, cte_brand_and_model, agr_id)
+    VALUES (10, 'AUTO10', 'Отличное', 85, 'Volvo C180', 1);
 
 --car_lease_point_details
 INSERT INTO public.car_lease_point_details (car_id, lpt_id)

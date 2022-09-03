@@ -71,7 +71,7 @@ public class CarGetter {
                     "WHERE ((d.lpt_id = '" + new PointManager(connection).getNearestPointId(nearestPointAddress) + "') " +
                     "AND (c.id NOT IN(SELECT car_id " +
                     "FROM public.contract_details " +
-                    "WHERE contract_date != CURRENT_DATE)))";
+                    "WHERE contract_date = CURRENT_DATE)))";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);

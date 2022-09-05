@@ -11,10 +11,10 @@ public class ElementSetter {
     // Set Text Field
     public void setTextField(
             TextField settableTF,
-            int xSize,
-            int ySize,
             int xLayout,
-            int yLayout) {
+            int yLayout,
+            int xSize,
+            int ySize) {
 
         settableTF.setPrefSize(xSize, ySize);
         settableTF.setLayoutX(xLayout);
@@ -34,10 +34,10 @@ public class ElementSetter {
     // Set Button
     public void setButton(
             Button settableB,
-            int xSize,
-            int ySize,
             int xLayout,
-            int yLayout) {
+            int yLayout,
+            int xSize,
+            int ySize) {
 
         settableB.setPrefSize(xSize, ySize);
         settableB.setLayoutX(xLayout);
@@ -47,10 +47,10 @@ public class ElementSetter {
     // Set ComboBox
     public void setComboBox(
             ComboBox<String> settableBox,
-            int xSize,
-            int ySize,
             int xLayout,
-            int yLayout) {
+            int yLayout,
+            int xSize,
+            int ySize) {
 
         settableBox.setPrefSize(xSize, ySize);
         settableBox.setLayoutX(xLayout);

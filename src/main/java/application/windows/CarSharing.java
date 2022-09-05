@@ -40,8 +40,8 @@ public class CarSharing extends Application {
 		Button enterAsAggregatorButton = new Button("Enter as aggregator");
 
 		// Buttons size and settings
-		elementSetter.setButton(enterAsCustomerButton,		250, 50, 25, 25);
-		elementSetter.setButton(enterAsAggregatorButton,	250, 50, 25, 100);
+		elementSetter.setButton(enterAsCustomerButton,		25, 25,  250, 50);
+		elementSetter.setButton(enterAsAggregatorButton,	25, 100, 250, 50);
 
 		// Set on Action Buttons
 		enterAsCustomerButton.setOnAction(e -> customerAuthorizationWindow());
@@ -77,10 +77,10 @@ public class CarSharing extends Application {
 		Button registrationButton = new Button("Registration");
 
 		// Interface Elements sizes and settings
-		elementSetter.setTextField(	loginTextField,		200, 25, 75,  25);
-		elementSetter.setTextLabel(	loginText,								20,  30);
-		elementSetter.setButton(	enterButton,		100, 25, 175, 75);
-		elementSetter.setButton(	registrationButton,	100, 25, 50,  75);
+		elementSetter.setTextField(	loginTextField,		75,  25, 200, 25);
+		elementSetter.setTextLabel(	loginText,			20,  30);
+		elementSetter.setButton(	enterButton,		175, 75, 100, 25);
+		elementSetter.setButton(	registrationButton,	50,  75, 100, 25);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
@@ -147,9 +147,9 @@ public class CarSharing extends Application {
 		Button exitButton = new Button("Exit");
 
 		// Interface Elements sizes and settings
-		elementSetter.setImageView(	mapImgView,							25, 25);
-		elementSetter.setButton(	enterButton,	175, 25, 100, 500);
-		elementSetter.setButton(	exitButton,		100, 25, 300, 500);
+		elementSetter.setImageView(	mapImgView,		25,  25);
+		elementSetter.setButton(	enterButton,	100, 500, 175, 25);
+		elementSetter.setButton(	exitButton,		300, 500, 100, 25);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
@@ -226,11 +226,11 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		elementSetter.setComboBox(	carBox,					250, 25, 125, 75);
-		elementSetter.setTextLabel(	carText,									25,  80);
-		elementSetter.setTextLabel(	pointText,									100, 30);
-		elementSetter.setButton(	createContractButton,	150, 25, 125, 125);
-		elementSetter.setButton(	backButton,				75, 25,  300, 125);
+		elementSetter.setComboBox(	carBox,					125, 75,  250, 25);
+		elementSetter.setTextLabel(	carText,				25,  80);
+		elementSetter.setTextLabel(	pointText,				100, 30);
+		elementSetter.setButton(	createContractButton,	125, 125, 150, 25);
+		elementSetter.setButton(	backButton,				300, 125, 75,  25);
 
 		// Set on Action Buttons
 		createContractButton.setOnAction(e -> {
@@ -293,14 +293,14 @@ public class CarSharing extends Application {
 		Button exitButton = new Button("Exit");
 
 		// Interface Elements sizes and settings
-		elementSetter.setTextField(	firstNameTextField,	200, 25, 125, 25);
-		elementSetter.setTextField(	lastNameTextField,	200, 25, 125, 75);
-		elementSetter.setTextField(	licenseTextField,	200, 25, 125, 125);
-		elementSetter.setTextLabel(	firstNameText, 							20,  30);
-		elementSetter.setTextLabel(	lastNameText, 							20,  80);
-		elementSetter.setTextLabel(	licenseText, 							20,  130);
-		elementSetter.setButton(	registrationButton,	150, 25, 50,  175);
-		elementSetter.setButton(	exitButton,			100, 25, 225, 175);
+		elementSetter.setTextField(	firstNameTextField,	125, 25,  200, 25);
+		elementSetter.setTextField(	lastNameTextField,	125, 75,  200, 25);
+		elementSetter.setTextField(	licenseTextField,	125, 125, 200, 25);
+		elementSetter.setTextLabel(	firstNameText, 		20,  30);
+		elementSetter.setTextLabel(	lastNameText, 		20,  80);
+		elementSetter.setTextLabel(	licenseText, 		20,  130);
+		elementSetter.setButton(	registrationButton,	50,  175, 150, 25);
+		elementSetter.setButton(	exitButton,			225, 175, 100, 25);
 
 		// Set on Action Buttons
 		registrationButton.setOnAction(e -> {
@@ -389,9 +389,9 @@ public class CarSharing extends Application {
 		Button enterButton = new Button("Enter");
 
 		// Interface Elements sizes and settings
-		elementSetter.setTextField(	loginTextField,	200, 25, 75,  25);
-		elementSetter.setTextLabel(	loginText, 							25,  30);
-		elementSetter.setButton(	enterButton,	100, 25, 175, 75);
+		elementSetter.setTextField(	loginTextField,	75,  25, 200, 25);
+		elementSetter.setTextLabel(	loginText, 		25,  30);
+		elementSetter.setButton(	enterButton,	175, 75, 100, 25);
 
 		// Set on Action Buttons
 		enterButton.setOnAction(e -> {
@@ -448,8 +448,8 @@ public class CarSharing extends Application {
 		Button newPointButton = new Button("Add a lease point");
 
 		// Interface Elements sizes and settings
-		elementSetter.setButton(newCarButton,	250, 50, 25, 25);
-		elementSetter.setButton(newPointButton,	250, 50, 25, 100);
+		elementSetter.setButton(newCarButton,	25, 25,  250, 50);
+		elementSetter.setButton(newPointButton,	25, 100, 250, 50);
 
 		// Set on Action Buttons
 		newCarButton.setOnAction(e -> aggregatorAddCarWindow(connection, aggregatorManager, pointManager));
@@ -500,14 +500,14 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		elementSetter.setComboBox(	pointBox,			250, 25, 125, 25);
-		elementSetter.setComboBox(	carBox,				250, 25, 125, 75);
-		elementSetter.setTextField(	carPlateTextField,	150, 25, 150, 125);
-		elementSetter.setTextLabel(	pointText, 								25,  30);
-		elementSetter.setTextLabel(	modelText, 								25,  80);
-		elementSetter.setTextLabel(	plateText, 								25,  130);
-		elementSetter.setButton(	addCarButton,		175, 25, 75,  175);
-		elementSetter.setButton(	backButton,			100, 25, 275, 175);
+		elementSetter.setComboBox(	pointBox,			125, 25,  250, 25);
+		elementSetter.setComboBox(	carBox,				125, 75,  250, 25);
+		elementSetter.setTextField(	carPlateTextField,	150, 125, 150, 25);
+		elementSetter.setTextLabel(	pointText, 			25,  30);
+		elementSetter.setTextLabel(	modelText, 			25,  80);
+		elementSetter.setTextLabel(	plateText, 			25,  130);
+		elementSetter.setButton(	addCarButton,		75,  175, 175, 25);
+		elementSetter.setButton(	backButton,			275, 175, 100, 25);
 
 		// Set on Action Buttons
 		addCarButton.setOnAction(e -> {
@@ -582,17 +582,17 @@ public class CarSharing extends Application {
 		Button backButton = new Button("Back");
 
 		// Interface Elements sizes and settings
-		elementSetter.setImageView(	mapImgView, 							25,  25);
-		elementSetter.setTextField(	addressTextField,	175, 25, 125, 500);
-		elementSetter.setTextLabel(	addressText, 							25,  505);
-		elementSetter.setButton(	addPointButton,		150, 25, 25,  550);
-		elementSetter.setButton(	backButton, 		100, 25, 200, 550);
+		elementSetter.setImageView(	mapImgView, 		25,  25);
+		elementSetter.setTextField(	addressTextField,	125, 500, 175, 25);
+		elementSetter.setTextLabel(	addressText, 		25,  505);
+		elementSetter.setButton(	addPointButton,		25,  550, 150, 25);
+		elementSetter.setButton(	backButton, 		200, 550, 100, 25);
 
 		// Set on Action Buttons
 		addPointButton.setOnAction(e ->{
 			String address = addressTextField.getText();
-			String x = customerPoint.getCenterX() + "";
-			String y = customerPoint.getCenterY() + "";
+			String x = customerPoint.getCenterX() - 25 + "";
+			String y = customerPoint.getCenterY() - 25 + "";
 			if (address.equals("")) {
 				JOptionPane.showMessageDialog(
 						null,

@@ -9,6 +9,8 @@ module com.example.carsharing_fx {
 
     exports application.windows;
     opens application.windows to javafx.fxml;
+    exports service;
+    opens service to javafx.fxml;
     exports service.database;
     opens service.database to javafx.fxml;
 }

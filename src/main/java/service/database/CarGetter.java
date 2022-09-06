@@ -68,7 +68,7 @@ public class CarGetter {
                     "ON (c.id = d.car_id) " +
                     "JOIN public.car_types ct " +
                     "ON (c.cte_brand_and_model = ct.brand_and_model) " +
-                    "WHERE ((d.lpt_id = '" + new PointManager(connection).getNearestPointId(nearestPointAddress) + "') " +
+                    "WHERE ((d.lpt_id = '" + new PointManager(connection).getPointIDFromAddress(nearestPointAddress) + "') " +
                     "AND (c.id NOT IN(SELECT car_id " +
                     "FROM public.contract_details " +
                     "WHERE contract_date = CURRENT_DATE)))";

@@ -139,7 +139,7 @@ public class CarSharing extends Application {
 		PointManager pointManager = new PointManager(connection);
 
 		// Create Interface Elements
-		Circle customerPoint = pointManager.getCustomerPoint();
+		Circle customerPoint = pointManager.getPoint();
 		Image mapImg = new Image((Objects.requireNonNull(
 				this.getClass().getClassLoader().getResource("Background.jpg"))).toString());
 		ImageView mapImgView = new ImageView(mapImg);
@@ -175,14 +175,14 @@ public class CarSharing extends Application {
 		});
 
 		// Movable point on Image
-		pointManager.setCustomerPoint(mapImgView, customerPoint);
+		pointManager.setPoint(mapImgView, customerPoint);
 
 		// Create and setting Pane
 		Pane root = new Pane();
 		root.getChildren().addAll(mapImgView, enterButton, exitButton);
 
 		// Create point and add on Image
-		root.getChildren().addAll(pointManager.paintPoint());
+		root.getChildren().addAll(pointManager.paintCustomerPoint());
 		root.getChildren().add(customerPoint);
 
 		// Create and setting window
@@ -213,7 +213,7 @@ public class CarSharing extends Application {
 
 		// Create local variables and Object
 		CarGetter carGetter = new CarGetter(connection);
-		ArrayList<Integer> pointCoordinates = new ArrayList<>(pointManager.getPointCoordinateList());
+		ArrayList<Integer> pointCoordinates = new ArrayList<>(pointManager.getAllPointCoordinateList());
 		String nearestPointAddress = pointManager.calculateNearestPoint(x, y, pointCoordinates);
 
 		// Create Interface Elements
@@ -573,7 +573,7 @@ public class CarSharing extends Application {
 
 		// Create Interface Elements
 		TextField addressTextField = new TextField();
-		Circle customerPoint = pointManager.getCustomerPoint();
+		Circle newPoint = pointManager.getPoint();
 		Image mapImg = new Image((Objects.requireNonNull(
 				this.getClass().getClassLoader().getResource("Background.jpg"))).toString());
 		ImageView mapImgView = new ImageView(mapImg);
@@ -591,8 +591,8 @@ public class CarSharing extends Application {
 		// Set on Action Buttons
 		addPointButton.setOnAction(e ->{
 			String address = addressTextField.getText();
-			String x = customerPoint.getCenterX() - 25 + "";
-			String y = customerPoint.getCenterY() - 25 + "";
+			String x = newPoint.getCenterX() - 25 + "";
+			String y = newPoint.getCenterY() - 25 + "";
 			if (address.equals("")) {
 				JOptionPane.showMessageDialog(
 						null,
@@ -633,7 +633,7 @@ public class CarSharing extends Application {
 		backButton.setOnAction(e ->	secondStage.close());
 
 		// Movable point on Image
-		pointManager.setCustomerPoint(mapImgView, customerPoint);
+		pointManager.setPoint(mapImgView, newPoint);
 
 		// Create and setting Pane
 		Pane root = new Pane();
@@ -641,9 +641,10 @@ public class CarSharing extends Application {
 				addressTextField,
 				addressText,
 				mapImgView,
-				customerPoint,
+				newPoint,
 				addPointButton,
 				backButton);
+		root.getChildren().addAll(pointManager.paintAggregatorPoint(aggregatorManager.getAggregatorID()));
 
 		// Create and setting window
 		Scene scene = new Scene(root, 500, 600);

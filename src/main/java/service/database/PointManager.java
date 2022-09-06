@@ -18,10 +18,10 @@ public class PointManager {
     }
 
     // Get Location Point
-    public Circle getCustomerPoint() {
+    public Circle getPoint() {
 
         ArrayList<Integer> pointCoordinates;
-        pointCoordinates = getPointCoordinateList();
+        pointCoordinates = getAllPointCoordinateList();
 
         int pointQuantity = pointCoordinates.size()/2 ;
 
@@ -35,7 +35,7 @@ public class PointManager {
     }
 
     // Set location Point
-    public void setCustomerPoint(ImageView map, Circle customerPoint) {
+    public void setPoint(ImageView map, Circle customerPoint) {
 
         map.setOnMousePressed(me -> {
             customerPoint.setCenterX(me.getX() + 25);
@@ -50,29 +50,6 @@ public class PointManager {
             String query = "SELECT id " +
                     "FROM public.lease_points " +
                     "WHERE address = '" + point + "'";
-
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            resultSet.next();
-
-            return resultSet.getString(1);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-    // Get ID nearest Point from Address
-    // !Copy functionality of getPointIDFromAddress method  !
-    // !Delete in future update                             !
-    public String getNearestPointId(String nearestPointAddress) {
-
-        try {
-            String query = "SELECT id " +
-                    "FROM public.lease_points " +
-                    "WHERE address = '" + nearestPointAddress + "'";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -132,13 +109,30 @@ public class PointManager {
         return idList;
     }
 
-    // Get Point Coordinate List
-    public ArrayList<Integer> getPointCoordinateList() {
+    // Get point coordinate list
+    public ArrayList<Integer> getAllPointCoordinateList() {
+
+        String query = "SELECT x_coordinate, y_coordinate " +
+                "FROM public.lease_points";
+
+        return getPointCoordinateList(query);
+    }
+
+    // Get aggregator point coordinate list
+    public ArrayList<Integer> getAggregatorPointCoordinateList(String aggregatorID) {
+
+        String query = "SELECT x_coordinate, y_coordinate " +
+                "FROM public.lease_points " +
+                "WHERE agr_id = " + aggregatorID;
+
+        return getPointCoordinateList(query);
+    }
+
+    public ArrayList<Integer> getPointCoordinateList(String query) {
 
         ArrayList<Integer> coordinateList = new ArrayList<>();
+
         try {
-            String query = "SELECT x_coordinate, y_coordinate " +
-                    "FROM public.lease_points";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -157,10 +151,17 @@ public class PointManager {
     }
 
     // Create Points
-    public Circle[] paintPoint() {
+    public Circle[] paintCustomerPoint() {
 
-        ArrayList<Integer> pointCoordinates;
-        pointCoordinates = getPointCoordinateList();
+        return paintPoint(getAllPointCoordinateList());
+    }
+
+    public Circle[] paintAggregatorPoint(String aggregatorID) {
+
+        return paintPoint(getAggregatorPointCoordinateList(aggregatorID));
+    }
+
+    public Circle[] paintPoint(ArrayList<Integer> pointCoordinates) {
 
         int pointQuantity = pointCoordinates.size()/2 ;
         int i;

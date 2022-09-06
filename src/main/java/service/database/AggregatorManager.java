@@ -62,4 +62,8 @@ public class AggregatorManager {
 	public void setAggregatorID(String aggregatorID) {
 		this.aggregatorID = aggregatorID;
 	}
+
+	public String getAggregatorID() {
+		return aggregatorID;
+	}
 }
